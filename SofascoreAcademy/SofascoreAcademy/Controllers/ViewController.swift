@@ -4,74 +4,82 @@
 //
 //  Created by Matija Pavicic on 11.03.2024..
 //
+import Foundation
 import SnapKit
 import SofaAcademic
 import UIKit
 
 class ViewController: UIViewController {
     
-    let spainTournamentCell: TournamentCellView = .init()
-    let eventsStack: UIStackView = .init()
-    var eventsViewArray: [EventCellView] = .init()
-    var tournament = TournamentCellModel.sampleData
-    var events = EventCellModel.sampleData
-
+    private let spainTournamentHeaderView: TournamentHeaderView = .init()
+    private let eventsStackView: UIStackView = .init()
+    private var eventsViewArray: [EventView] = .init()
+    private let tournament = TournamentHeaderModel.sampleData[0]
+    private let events = EventModel.sampleData
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
         self.view.backgroundColor = .white
         
-        self.view.addSubview(spainTournamentCell)
-        self.view.addSubview(eventsStack)
-       
-        eventsStack.axis = .vertical
+        self.view.addSubview(spainTournamentHeaderView)
+        self.view.addSubview(eventsStackView)
         
-        spainTournamentCell.countryLabel.text = tournament.countryName
-        spainTournamentCell.leagueLabel.text = tournament.leagueName
-        spainTournamentCell.logoImageView.image = tournament.leagueLogo
+        eventsStackView.axis = .vertical
+        
+        spainTournamentHeaderView.countryName(tournament.countryName)
+        spainTournamentHeaderView.leagueName(tournament.leagueName)
+        spainTournamentHeaderView.leagueLogo(tournament.leagueLogo)
         
         events.forEach {
-            let view: EventCellView = .init()
-            view.homeTeamCellView.teamImageView.image = $0.homeTeamLogo
-            view.awayTeamCellView.teamImageView.image = $0.awayTeamLogo
-            view.homeTeamCellView.teamLabel.text = $0.homeTeamName
-            view.awayTeamCellView.teamLabel.text = $0.awayTeamName
-            view.homeScoreLabel.text = $0.homeTeamScore
-            view.awayScoreLabel.text = $0.awayTeamScore
-            view.timeCellView.startTimeLabel.text = EventDateHelper.getStartTime(for: $0.startTimestamp)
-            view.timeCellView.matchTimeLabel.text = EventDateHelper.getMatchMinute(for: $0.matchMinute)
-
+            let eventView: EventView = .init()
+            
+            eventView.homeTeamImage($0.homeTeamLogo)
+            eventView.homeTeamLabel($0.homeTeamName)
+            eventView.homeTeamScore($0.homeTeamScore)
+            
+            eventView.awayTeamImage($0.awayTeamLogo)
+            eventView.awayTeamLabel($0.awayTeamName)
+            eventView.awayTeamScore($0.awayTeamScore)
+            
+            eventView.startTime(EventDateHelper.getStartTime(for: $0.startTimestamp))
+            eventView.matchTime(EventDateHelper.getMatchMinute(for: $0.matchMinute))
+            
             switch $0.matchStatus {
             case .notStarted:
-                view.homeTeamLabelColor(.sofaBlack)
-                view.awayTeamLabelColor(.sofaBlack)
+                eventView.homeTeamLabelColor(.sofaBlack)
+                eventView.awayTeamLabelColor(.sofaBlack)
             case .inProgress:
-                view.homeTeamLabelColor(.sofaBlack)
-                view.awayTeamLabelColor(.sofaBlack)
-                view.homeScoreLabelColor(.sofaRed)
-                view.awayScoreLabelColor(.sofaRed)
-                view.timeCellView.matchTimeLabel.textColor = .sofaRed
+                eventView.homeTeamLabelColor(.sofaBlack)
+                eventView.homeScoreLabelColor(.sofaRed)
+                eventView.awayTeamLabelColor(.sofaBlack)
+                eventView.awayScoreLabelColor(.sofaRed)
+                eventView.matchTimeColor(.sofaRed)
             case .finished:
-                view.homeTeamLabelColor(EventDateHelper.calculateWinner(home: $0.homeTeamScore, away: $0.awayTeamScore)["home"] ?? .sofaBlack)
-                view.homeScoreLabelColor(EventDateHelper.calculateWinner(home: $0.homeTeamScore, away: $0.awayTeamScore)["home"] ?? .sofaBlack)
-                view.awayTeamLabelColor(EventDateHelper.calculateWinner(home: $0.homeTeamScore, away: $0.awayTeamScore)["away"] ?? .sofaBlack)
-                view.awayScoreLabelColor(EventDateHelper.calculateWinner(home: $0.homeTeamScore, away: $0.awayTeamScore)["away"] ?? .sofaBlack)
+                eventView.homeTeamLabelColor($0.winnerCode == 1 ? .sofaBlack : .sofaGray)
+                eventView.homeScoreLabelColor($0.winnerCode == 1 ? .sofaBlack : .sofaGray)
+                eventView.awayTeamLabelColor($0.winnerCode == 2 ? .sofaBlack : .sofaGray)
+                eventView.awayScoreLabelColor($0.winnerCode == 2 ? .sofaBlack : .sofaGray)
             }
             
-            eventsViewArray.append(view)
+            eventsViewArray.append(eventView)
         }
         
         eventsViewArray.forEach {
-            eventsStack.addArrangedSubview($0)
+            eventsStackView.addArrangedSubview($0)
         }
-        
-        spainTournamentCell.snp.makeConstraints {
-           $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(16)
-           $0.leading.trailing.equalToSuperview()
+
+        spainTournamentHeaderView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(16)
+            $0.leading.trailing.equalToSuperview()
         }
-        eventsStack.snp.makeConstraints {
-            $0.top.equalTo(spainTournamentCell.snp.bottom)
+        eventsStackView.snp.makeConstraints {
+            $0.top.equalTo(spainTournamentHeaderView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
         }
     }
+}
+
+#Preview {
+    ViewController()
 }

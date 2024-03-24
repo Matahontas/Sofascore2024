@@ -1,8 +1,8 @@
 //
-//  TournamentCellView.swift
+//  TournamentHeaderView.swift
 //  SofascoreAcademy
 //
-//  Created by Matija Pavicic on 15.03.2024..
+//  Created by Matija Pavicic on 22.03.2024..
 //
 
 import Foundation
@@ -10,13 +10,13 @@ import SnapKit
 import SofaAcademic
 import UIKit
 
-class TournamentCellView: BaseView {
+class TournamentHeaderView: BaseView {
     
-    let logoImageView: UIImageView = .init()
-    let leagueLabelStack: UIStackView = .init()
-    let countryLabel: UILabel = .init()
-    let pointerRightImageView: UIImageView = .init()
-    let leagueLabel: UILabel = .init()
+    private let logoImageView: UIImageView = .init()
+    private let leagueLabelStack: UIStackView = .init()
+    private let countryLabel: UILabel = .init()
+    private let pointerRightImageView: UIImageView = .init()
+    private let leagueLabel: UILabel = .init()
     
     override func addViews() {
         addSubview(logoImageView)
@@ -45,17 +45,39 @@ class TournamentCellView: BaseView {
     override func setupConstraints() {
         logoImageView.snp.makeConstraints {
             $0.size.equalTo(32)
-            $0.top.equalToSuperview().inset(12)
+            $0.top.equalToSuperview()
             $0.leading.equalToSuperview().inset(16)
             $0.bottom.equalToSuperview().inset(12)
         }
         leagueLabelStack.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(16)
+            $0.top.equalToSuperview()
             $0.leading.equalTo(logoImageView.snp.trailing).offset(32)
             $0.bottom.equalToSuperview().inset(16)
+            $0.trailing.lessThanOrEqualToSuperview()
         }
         pointerRightImageView.snp.makeConstraints {
-            $0.width.equalTo(24)
+            $0.size.equalTo(24)
         }
+    }
+}
+
+extension TournamentHeaderView {
+    
+    @discardableResult
+    func countryName(_ name: String) -> Self {
+        countryLabel.text = name
+        return self
+    }
+    
+    @discardableResult
+    func leagueName(_ name: String) -> Self {
+        leagueLabel.text = name
+        return self
+    }
+    
+    @discardableResult
+    func leagueLogo(_ image: UIImage) -> Self {
+        logoImageView.image = image
+        return self
     }
 }

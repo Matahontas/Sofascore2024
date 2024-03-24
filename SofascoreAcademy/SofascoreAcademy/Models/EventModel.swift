@@ -1,14 +1,14 @@
 //
-//  EventCellModel.swift
+//  EventModel.swift
 //  SofascoreAcademy
 //
-//  Created by Matija Pavicic on 17.03.2024..
+//  Created by Matija Pavicic on 22.03.2024..
 //
 
 import Foundation
 import UIKit
 
-struct EventCellModel {
+struct EventModel {
     var startTimestamp: Int
     var matchMinute: String
     var homeTeamLogo: UIImage
@@ -18,12 +18,21 @@ struct EventCellModel {
     var homeTeamScore: String
     var awayTeamScore: String
     var matchStatus: MatchStatus
+    var winnerCode: Int {
+        if (Double(homeTeamScore) ?? 0 > Double(awayTeamScore) ?? 0) {
+            return 1
+        } else if (Double(homeTeamScore) ?? 0 < Double(awayTeamScore) ?? 0) {
+            return 2
+        } else {
+            return 3
+        }
+    }
 }
 
-extension EventCellModel {
-    static let sampleData: [EventCellModel] =
+extension EventModel {
+    static let sampleData: [EventModel] =
     [
-        EventCellModel(startTimestamp: 1710158400,
+        EventModel(startTimestamp: 1710158400,
                        matchMinute: .full_time,
                        homeTeamLogo: .manUtdLogo,
                        awayTeamLogo: .barcelonaLogo,
@@ -33,8 +42,8 @@ extension EventCellModel {
                        awayTeamScore: "4",
                        matchStatus: MatchStatus.finished
                       ),
-        EventCellModel(startTimestamp: 1710169200,
-                       matchMinute: "1710170640.0",
+        EventModel(startTimestamp: 1710169200,
+                       matchMinute: "1710170640",
                        homeTeamLogo: .manUtdLogo,
                        awayTeamLogo: .barcelonaLogo,
                        homeTeamName: .man_utd,
@@ -43,7 +52,7 @@ extension EventCellModel {
                        awayTeamScore: "1",
                        matchStatus: MatchStatus.inProgress
                       ),
-        EventCellModel(startTimestamp: 1710176400,
+        EventModel(startTimestamp: 1710176400,
                        matchMinute: .no_match_minute,
                        homeTeamLogo: .manUtdLogo,
                        awayTeamLogo: .barcelonaLogo,
@@ -53,7 +62,7 @@ extension EventCellModel {
                        awayTeamScore: "",
                        matchStatus: MatchStatus.notStarted
                       ),
-        EventCellModel(startTimestamp: 1710181800,
+        EventModel(startTimestamp: 1710181800,
                        matchMinute: .no_match_minute,
                        homeTeamLogo: .manUtdLogo,
                        awayTeamLogo: .barcelonaLogo,

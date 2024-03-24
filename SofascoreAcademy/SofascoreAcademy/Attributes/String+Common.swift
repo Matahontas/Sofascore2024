@@ -15,4 +15,6 @@ extension String {
     static let la_liga = NSLocalizedString("La Liga", comment: "League")
     static let full_time = NSLocalizedString("FT", comment: "Full time abbreviation")
     static let no_match_minute = NSLocalizedString("-", comment: "No match minute displayed")
+    static let germany = NSLocalizedString("Germany", comment: "Country")
+    static let bundesliga = NSLocalizedString("Bundesliga", comment: "League")
 }

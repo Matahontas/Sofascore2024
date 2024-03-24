@@ -1,8 +1,8 @@
 //
-//  TimeCellView.swift
+//  MatchTimeView.swift
 //  SofascoreAcademy
 //
-//  Created by Matija Pavicic on 21.03.2024..
+//  Created by Matija Pavicic on 22.03.2024..
 //
 
 import Foundation
@@ -10,11 +10,11 @@ import SnapKit
 import SofaAcademic
 import UIKit
 
-class TimeCellView: BaseView {
+class MatchTimeView: BaseView {
     
-    let startTimeLabel: UILabel = .init()
-    let matchTimeLabel: UILabel = .init()
-    let dividerView: UIView = .init()
+    private let startTimeLabel: UILabel = .init()
+    private let matchTimeLabel: UILabel = .init()
+    private let dividerView: UIView = .init()
     
     override func addViews() {
         addSubview(startTimeLabel)
@@ -46,13 +46,33 @@ class TimeCellView: BaseView {
         }
         matchTimeLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(30)
-            $0.leading.equalToSuperview().inset(4)
-            $0.trailing.equalToSuperview().inset(4)
+            $0.leading.trailing.equalToSuperview().inset(4)
         }
         dividerView.snp.makeConstraints {
             $0.width.equalTo(1)
             $0.top.bottom.equalToSuperview().inset(8)
             $0.trailing.equalToSuperview()
         }
+    }
+}
+
+extension MatchTimeView {
+    
+    @discardableResult
+    func startTime(_ time: String) -> Self {
+        startTimeLabel.text = time
+        return self
+    }
+    
+    @discardableResult
+    func matchTime(_ time: String) -> Self {
+        matchTimeLabel.text = time
+        return self
+    }
+    
+    @discardableResult
+    func matchTimeColor(_ color: UIColor) -> Self {
+        matchTimeLabel.textColor = color
+        return self
     }
 }
