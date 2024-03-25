@@ -45,12 +45,12 @@ class EventView: BaseView {
         homeTeamView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(10)
             $0.leading.equalTo(matchTimeView.snp.trailing).offset(16)
-            $0.trailing.equalTo(homeScoreLabel.snp.leading).offset(16)
+            $0.trailing.equalToSuperview().inset(64)
         }
         awayTeamView.snp.makeConstraints {
             $0.top.equalTo(homeTeamView.snp.bottom).offset(4)
-            $0.bottom.equalToSuperview().inset(10)
             $0.leading.equalTo(matchTimeView.snp.trailing).offset(16)
+            $0.trailing.equalToSuperview().inset(64)
         }
         homeScoreLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(10)
@@ -58,7 +58,7 @@ class EventView: BaseView {
             $0.trailing.equalToSuperview().inset(16)
         }
         awayScoreLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(10)
+            $0.top.equalTo(homeScoreLabel.snp.bottom).offset(4)
             $0.leading.equalTo(awayTeamView.snp.trailing).offset(16)
             $0.trailing.equalToSuperview().inset(16)
         }

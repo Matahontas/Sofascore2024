@@ -12,12 +12,12 @@
 		4037CA5A2BAC9BBA00627202 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4037CA592BAC9BBA00627202 /* EventsViewController.swift */; };
 		4037CA5C2BAC9F7A00627202 /* EventTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4037CA5B2BAC9F7A00627202 /* EventTableCell.swift */; };
 		403B1B242B9F0E4000AD49C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B1B232B9F0E4000AD49C2 /* AppDelegate.swift */; };
-		403B1B282B9F0E4000AD49C2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B1B272B9F0E4000AD49C2 /* ViewController.swift */; };
 		403B1B2D2B9F0E4100AD49C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 403B1B2C2B9F0E4100AD49C2 /* Assets.xcassets */; };
 		403B1B302B9F0E4100AD49C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 403B1B2E2B9F0E4100AD49C2 /* LaunchScreen.storyboard */; };
 		406838FB2BA5E2AD00B7FF60 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 406838F82BA5E2AD00B7FF60 /* Roboto-Bold.ttf */; };
 		406838FC2BA5E2AD00B7FF60 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 406838F92BA5E2AD00B7FF60 /* Roboto-Regular.ttf */; };
 		406838FD2BA5E2AD00B7FF60 /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 406838FA2BA5E2AD00B7FF60 /* RobotoCondensed-Regular.ttf */; };
+		406A10972BB0F22D00B80BB8 /* EventStatusHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406A10962BB0F22D00B80BB8 /* EventStatusHelper.swift */; };
 		40932A2C2BAD83DA00DCD1D6 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40932A2B2BAD83DA00DCD1D6 /* EventView.swift */; };
 		40932A2E2BAD845B00DCD1D6 /* MatchTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40932A2D2BAD845B00DCD1D6 /* MatchTimeView.swift */; };
 		40932A322BAD849F00DCD1D6 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40932A312BAD849E00DCD1D6 /* TeamView.swift */; };
@@ -40,13 +40,13 @@
 		4037CA5B2BAC9F7A00627202 /* EventTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableCell.swift; sourceTree = "<group>"; };
 		403B1B202B9F0E4000AD49C2 /* SofascoreAcademy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SofascoreAcademy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		403B1B232B9F0E4000AD49C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		403B1B272B9F0E4000AD49C2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		403B1B2C2B9F0E4100AD49C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		403B1B2F2B9F0E4100AD49C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		403B1B312B9F0E4100AD49C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		406838F82BA5E2AD00B7FF60 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		406838F92BA5E2AD00B7FF60 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		406838FA2BA5E2AD00B7FF60 /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
+		406A10962BB0F22D00B80BB8 /* EventStatusHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStatusHelper.swift; sourceTree = "<group>"; };
 		40932A2B2BAD83DA00DCD1D6 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		40932A2D2BAD845B00DCD1D6 /* MatchTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTimeView.swift; sourceTree = "<group>"; };
 		40932A312BAD849E00DCD1D6 /* TeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
@@ -86,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				4097FBDF2BAB78C200CB4692 /* EventDateHelper.swift */,
+				406A10962BB0F22D00B80BB8 /* EventStatusHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -148,7 +149,6 @@
 		40E803D92BA3246A0097C8C1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				403B1B272B9F0E4000AD49C2 /* ViewController.swift */,
 				4037CA592BAC9BBA00627202 /* EventsViewController.swift */,
 			);
 			path = Controllers;
@@ -256,11 +256,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				403B1B282B9F0E4000AD49C2 /* ViewController.swift in Sources */,
 				4037CA532BAC50F000627202 /* String+Common.swift in Sources */,
 				40F2161C2BA7A24200A777BE /* Colors.swift in Sources */,
 				40932A382BAD898E00DCD1D6 /* TournamentHeaderModel.swift in Sources */,
 				40932A342BAD860A00DCD1D6 /* TournamentHeaderView.swift in Sources */,
+				406A10972BB0F22D00B80BB8 /* EventStatusHelper.swift in Sources */,
 				40932A2C2BAD83DA00DCD1D6 /* EventView.swift in Sources */,
 				40932A362BAD88D200DCD1D6 /* EventModel.swift in Sources */,
 				401626522BACD6CF00F08AF4 /* TournamentTableHeader.swift in Sources */,
