@@ -23,6 +23,7 @@ class TeamView: BaseView {
     
     override func styleViews() {
         teamStackView.spacing = 8
+        teamStackView.axis = .horizontal
         
         teamLabel.font = .body
         

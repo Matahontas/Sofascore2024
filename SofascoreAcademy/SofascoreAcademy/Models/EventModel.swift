@@ -30,9 +30,10 @@ struct EventModel {
 }
 
 extension EventModel {
-    static let sampleData: [EventModel] =
-    [
-        EventModel(startTimestamp: 1710158400,
+    static let sampleData: [String : [EventModel]] = [
+        "Spain" :
+        [
+            EventModel(startTimestamp: 1710158400,
                        matchMinute: .full_time,
                        homeTeamLogo: .manUtdLogo,
                        awayTeamLogo: .barcelonaLogo,
@@ -42,7 +43,7 @@ extension EventModel {
                        awayTeamScore: "4",
                        matchStatus: MatchStatus.finished
                       ),
-        EventModel(startTimestamp: 1710169200,
+            EventModel(startTimestamp: 1710169200,
                        matchMinute: "1710170640",
                        homeTeamLogo: .manUtdLogo,
                        awayTeamLogo: .barcelonaLogo,
@@ -52,7 +53,7 @@ extension EventModel {
                        awayTeamScore: "1",
                        matchStatus: MatchStatus.inProgress
                       ),
-        EventModel(startTimestamp: 1710176400,
+            EventModel(startTimestamp: 1710176400,
                        matchMinute: .no_match_minute,
                        homeTeamLogo: .manUtdLogo,
                        awayTeamLogo: .barcelonaLogo,
@@ -62,7 +63,7 @@ extension EventModel {
                        awayTeamScore: "",
                        matchStatus: MatchStatus.notStarted
                       ),
-        EventModel(startTimestamp: 1710181800,
+            EventModel(startTimestamp: 1710181800,
                        matchMinute: .no_match_minute,
                        homeTeamLogo: .manUtdLogo,
                        awayTeamLogo: .barcelonaLogo,
@@ -72,5 +73,180 @@ extension EventModel {
                        awayTeamScore: "",
                        matchStatus: MatchStatus.notStarted
                       )
+        ],
+        "Germany" :
+        [
+            EventModel(startTimestamp: 1710158400,
+                       matchMinute: .full_time,
+                       homeTeamLogo: .manUtdLogo,
+                       awayTeamLogo: .barcelonaLogo,
+                       homeTeamName: .man_utd,
+                       awayTeamName: .barcelona,
+                       homeTeamScore: "2",
+                       awayTeamScore: "2",
+                       matchStatus: MatchStatus.finished
+                      ),
+            EventModel(startTimestamp: 1710176400,
+                       matchMinute: .no_match_minute,
+                       homeTeamLogo: .manUtdLogo,
+                       awayTeamLogo: .barcelonaLogo,
+                       homeTeamName: .man_utd,
+                       awayTeamName: .barcelona,
+                       homeTeamScore: "",
+                       awayTeamScore: "",
+                       matchStatus: MatchStatus.notStarted
+                      ),
+            EventModel(startTimestamp: 1710181800,
+                       matchMinute: .no_match_minute,
+                       homeTeamLogo: .manUtdLogo,
+                       awayTeamLogo: .barcelonaLogo,
+                       homeTeamName: .man_utd,
+                       awayTeamName: .barcelona,
+                       homeTeamScore: "",
+                       awayTeamScore: "",
+                       matchStatus: MatchStatus.notStarted
+                      )
+        ],
+        "England" :
+        [
+            EventModel(startTimestamp: 1710158400,
+                       matchMinute: .full_time,
+                       homeTeamLogo: .manUtdLogo,
+                       awayTeamLogo: .barcelonaLogo,
+                       homeTeamName: .man_utd,
+                       awayTeamName: .barcelona,
+                       homeTeamScore: "3",
+                       awayTeamScore: "1",
+                       matchStatus: MatchStatus.finished
+                      ),
+            EventModel(startTimestamp: 1710169200,
+                       matchMinute: "1710170640",
+                       homeTeamLogo: .manUtdLogo,
+                       awayTeamLogo: .barcelonaLogo,
+                       homeTeamName: .man_utd,
+                       awayTeamName: .barcelona,
+                       homeTeamScore: "1",
+                       awayTeamScore: "3",
+                       matchStatus: MatchStatus.inProgress
+                      ),
+            EventModel(startTimestamp: 1710169200,
+                       matchMinute: "1710170640",
+                       homeTeamLogo: .manUtdLogo,
+                       awayTeamLogo: .barcelonaLogo,
+                       homeTeamName: .man_utd,
+                       awayTeamName: .barcelona,
+                       homeTeamScore: "0",
+                       awayTeamScore: "0",
+                       matchStatus: MatchStatus.inProgress
+                      ),
+            EventModel(startTimestamp: 1710176400,
+                       matchMinute: .no_match_minute,
+                       homeTeamLogo: .manUtdLogo,
+                       awayTeamLogo: .barcelonaLogo,
+                       homeTeamName: .man_utd,
+                       awayTeamName: .barcelona,
+                       homeTeamScore: "",
+                       awayTeamScore: "",
+                       matchStatus: MatchStatus.notStarted
+                      ),
+            EventModel(startTimestamp: 1710181800,
+                       matchMinute: .no_match_minute,
+                       homeTeamLogo: .manUtdLogo,
+                       awayTeamLogo: .barcelonaLogo,
+                       homeTeamName: .man_utd,
+                       awayTeamName: .barcelona,
+                       homeTeamScore: "",
+                       awayTeamScore: "",
+                       matchStatus: MatchStatus.notStarted
+                      )
+        ],
+        "Italy" :
+        [
+            EventModel(startTimestamp: 1710158400,
+                       matchMinute: .full_time,
+                       homeTeamLogo: .manUtdLogo,
+                       awayTeamLogo: .barcelonaLogo,
+                       homeTeamName: .man_utd,
+                       awayTeamName: .barcelona,
+                       homeTeamScore: "1",
+                       awayTeamScore: "1",
+                       matchStatus: MatchStatus.finished
+                      ),
+            EventModel(startTimestamp: 1710158400,
+                       matchMinute: .full_time,
+                       homeTeamLogo: .manUtdLogo,
+                       awayTeamLogo: .barcelonaLogo,
+                       homeTeamName: .man_utd,
+                       awayTeamName: .barcelona,
+                       homeTeamScore: "1",
+                       awayTeamScore: "0",
+                       matchStatus: MatchStatus.finished
+                      ),
+            EventModel(startTimestamp: 1710158400,
+                       matchMinute: .full_time,
+                       homeTeamLogo: .manUtdLogo,
+                       awayTeamLogo: .barcelonaLogo,
+                       homeTeamName: .man_utd,
+                       awayTeamName: .barcelona,
+                       homeTeamScore: "1",
+                       awayTeamScore: "4",
+                       matchStatus: MatchStatus.finished
+                      ),
+            EventModel(startTimestamp: 1710169200,
+                       matchMinute: "1710170640",
+                       homeTeamLogo: .manUtdLogo,
+                       awayTeamLogo: .barcelonaLogo,
+                       homeTeamName: .man_utd,
+                       awayTeamName: .barcelona,
+                       homeTeamScore: "2",
+                       awayTeamScore: "2",
+                       matchStatus: MatchStatus.inProgress
+                      ),
+            EventModel(startTimestamp: 1710176400,
+                       matchMinute: .no_match_minute,
+                       homeTeamLogo: .manUtdLogo,
+                       awayTeamLogo: .barcelonaLogo,
+                       homeTeamName: .man_utd,
+                       awayTeamName: .barcelona,
+                       homeTeamScore: "",
+                       awayTeamScore: "",
+                       matchStatus: MatchStatus.notStarted
+                      ),
+            EventModel(startTimestamp: 1710181800,
+                       matchMinute: .no_match_minute,
+                       homeTeamLogo: .manUtdLogo,
+                       awayTeamLogo: .barcelonaLogo,
+                       homeTeamName: .man_utd,
+                       awayTeamName: .barcelona,
+                       homeTeamScore: "",
+                       awayTeamScore: "",
+                       matchStatus: MatchStatus.notStarted
+                      )
+        ],
+        "France" :
+        [
+            EventModel(startTimestamp: 1710158400,
+                       matchMinute: .full_time,
+                       homeTeamLogo: .manUtdLogo,
+                       awayTeamLogo: .barcelonaLogo,
+                       homeTeamName: .man_utd,
+                       awayTeamName: .barcelona,
+                       homeTeamScore: "1",
+                       awayTeamScore: "1",
+                       matchStatus: MatchStatus.finished
+                      ),
+            EventModel(startTimestamp: 1710181800,
+                       matchMinute: .no_match_minute,
+                       homeTeamLogo: .manUtdLogo,
+                       awayTeamLogo: .barcelonaLogo,
+                       homeTeamName: .man_utd,
+                       awayTeamName: .barcelona,
+                       homeTeamScore: "",
+                       awayTeamScore: "",
+                       matchStatus: MatchStatus.notStarted
+                      )
+        ]
     ]
+    
+    static let emptyEventModel = EventModel(startTimestamp: 0, matchMinute: "", homeTeamLogo: UIImage(), awayTeamLogo: UIImage(), homeTeamName: "", awayTeamName: "", homeTeamScore: "", awayTeamScore: "", matchStatus: .notStarted)
 }
