@@ -32,23 +32,34 @@ class EventTableCell: UITableViewCell {
 
 extension EventTableCell {
     
-    func set(startTimestamp: Int,
-             matchMinute: String,
-             homeTeamLogo: UIImage,
-             awayTeamLogo: UIImage,
-             homeTeamName: String,
-             awayTeamName: String,
-             homeTeamScore: String,
-             awayTeamScore: String,
-             matchStatus: MatchStatus) {
-        eventView.homeTeamImage(homeTeamLogo)
-        eventView.awayTeamImage(awayTeamLogo)
-        eventView.homeTeamLabel(homeTeamName)
-        eventView.awayTeamLabel(awayTeamName)
-        eventView.homeTeamScore(homeTeamScore)
-        eventView.awayTeamScore(awayTeamScore)
-        eventView.startTime(EventDateHelper.getStartTime(for: startTimestamp))
-        eventView.matchTime(EventDateHelper.getMatchMinute(for: matchMinute))
+    func set(eventModel: EventModel) {
+        eventView.homeTeamImage(eventModel.homeTeamLogo)
+        eventView.awayTeamImage(eventModel.awayTeamLogo)
+        eventView.homeTeamLabel(eventModel.homeTeamName)
+        eventView.awayTeamLabel(eventModel.awayTeamName)
+        eventView.homeTeamScore(eventModel.homeTeamScore)
+        eventView.awayTeamScore(eventModel.awayTeamScore)
+        eventView.startTime(EventDateHelper.getStartTime(for: eventModel.startTimestamp))
+        eventView.matchTime(EventDateHelper.getMatchMinute(for: eventModel.matchMinute))
+        
+        switch eventModel.matchStatus {
+        case .notStarted:
+            eventView.homeTeamLabelColor(.sofaBlack)
+                .awayTeamLabelColor(.sofaBlack)
+                .matchTimeColor(.sofaGray)
+        case .inProgress:
+            eventView.homeTeamLabelColor(.sofaBlack)
+                .homeScoreLabelColor(.sofaRed)
+                .awayTeamLabelColor(.sofaBlack)
+                .awayScoreLabelColor(.sofaRed)
+                .matchTimeColor(.sofaRed)
+        case .finished:
+            eventView.homeTeamLabelColor(eventModel.winnerCode == 1 ? .sofaBlack : .sofaGray)
+                .homeScoreLabelColor(eventModel.winnerCode == 1 ? .sofaBlack : .sofaGray)
+                .awayTeamLabelColor(eventModel.winnerCode == 2 ? .sofaBlack : .sofaGray)
+                .awayScoreLabelColor(eventModel.winnerCode == 2 ? .sofaBlack : .sofaGray)
+                .matchTimeColor(.sofaGray)
+        }
     }
     
     @discardableResult

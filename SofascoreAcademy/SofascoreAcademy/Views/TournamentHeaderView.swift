@@ -27,15 +27,12 @@ class TournamentHeaderView: BaseView {
     }
     
     override func styleViews() {
-        backgroundColor = .white
-        
         leagueLabelStack.axis = .horizontal
-        
         countryLabel.font = .headline3
         countryLabel.numberOfLines = 1
         
+        pointerRightImageView.tintColor = .sofaGray
         pointerRightImageView.image = .icPointerRight
-        pointerRightImageView.alpha = 0.4
         
         leagueLabel.font = .headline3
         leagueLabel.textColor = .sofaGray

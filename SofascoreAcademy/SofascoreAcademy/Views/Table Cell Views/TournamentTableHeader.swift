@@ -33,9 +33,9 @@ class TournamentTableHeader: UITableViewHeaderFooterView {
 
 extension TournamentTableHeader {
     
-    func set(countryName: String, leagueName: String, leagueLogo: UIImage) {
-        tournamentHeaderView.countryName(countryName)
-        tournamentHeaderView.leagueName(leagueName)
-        tournamentHeaderView.leagueLogo(leagueLogo)
+    func set(tournamentHeaderModel: TournamentHeaderModel) {
+        tournamentHeaderView.countryName(tournamentHeaderModel.countryName)
+            .leagueName(tournamentHeaderModel.leagueName)
+            .leagueLogo(tournamentHeaderModel.leagueLogo)
     }
 }
