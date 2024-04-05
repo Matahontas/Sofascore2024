@@ -65,9 +65,6 @@ class MainViewController: UIViewController, BaseViewProtocol, TabItemDelegatePro
     }
     
     func styleViews() {
-        
-        containerView.backgroundColor = .sofaRed
-
         mainHeaderView.settingButtonTapHandler = {
             self.showSettings()
         }

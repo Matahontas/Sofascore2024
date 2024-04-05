@@ -15,7 +15,7 @@ class EventsViewController: UIViewController, BaseViewProtocol {
     private var tournaments = TournamentHeaderModel.sampleData
     private var events = [EventModel.sampleDataFootball, EventModel.sampleDataBasketball, EventModel.sampleDataAmFootball]
     private let tableView: UITableView = .init()
-    private var dataIndex: Int = 0
+    private var dataIndex: Int = UserDefaults.standard.integer(forKey: "tabIndex")
         
     override func viewDidLoad() {
         super.viewDidLoad()
