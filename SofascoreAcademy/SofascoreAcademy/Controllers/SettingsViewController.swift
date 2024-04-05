@@ -6,3 +6,44 @@
 //
 
 import Foundation
+import SofaAcademic
+import UIKit
+
+class SettingsViewController: UIViewController, BaseViewProtocol {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .safeArea
+        
+        addViews()
+        setupConstraints()
+        styleViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
+    }
+    
+    func addViews() {
+    }
+    
+    func setupConstraints() {
+    }
+    
+    func styleViews() {
+        title = .settings_title
+        view.backgroundColor = .systemBackground
+        
+        navigationItem.setLeftBarButton(UIBarButtonItem(title: .dismiss_string, style: .done, target: self, action: #selector(dismissSettingsView))
+                                        , animated: true)
+    }
+}
+
+extension SettingsViewController {
+    
+    @objc func dismissSettingsView() {
+        
+        navigationController?.popViewController(animated: true)
+    }
+}

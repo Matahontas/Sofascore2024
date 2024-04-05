@@ -14,7 +14,6 @@ class TabItemView: BaseView {
 
     private let sportImageView: UIImageView = .init()
     private let sportLabel: UILabel = .init()
-    var tabItemViewTapHandler: ((Int) -> Void)? = nil
     
     override func addViews() {
         addSubview(sportImageView)
@@ -44,11 +43,6 @@ class TabItemView: BaseView {
             $0.centerX.equalToSuperview()
         }
     }
-    
-    override func setupGestureRecognizers() {
-        let tabItemTapGesture = UITapGestureRecognizer(target: self, action: #selector(tabItemTappedAction))
-        addGestureRecognizer(tabItemTapGesture)
-    }
 }
 
 extension TabItemView {
@@ -63,10 +57,5 @@ extension TabItemView {
     func sportLabel(_ label: String) -> Self {
         sportLabel.text = label
         return self
-    }
-    
-    @objc
-    func tabItemTappedAction() {
-        tabItemViewTapHandler?(Int())
     }
 }

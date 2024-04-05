@@ -6,3 +6,12 @@
 //
 
 import Foundation
+import SofaAcademic
+import UIKit
+
+class SafeAreaCoverView: BaseView {
+    
+    override func styleViews() {
+        backgroundColor = .primaryDefault
+    }
+}

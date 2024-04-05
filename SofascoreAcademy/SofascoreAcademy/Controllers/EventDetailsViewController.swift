@@ -6,3 +6,32 @@
 //
 
 import Foundation
+import SofaAcademic
+import UIKit
+
+class EventDetailsViewController: UIViewController, BaseViewProtocol {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .safeArea
+        
+        addViews()
+        setupConstraints()
+        styleViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
+    }
+    
+    func addViews() {
+    }
+    
+    func setupConstraints() {
+    }
+    
+    func styleViews() {
+        title = .event_details_title
+    }
+}

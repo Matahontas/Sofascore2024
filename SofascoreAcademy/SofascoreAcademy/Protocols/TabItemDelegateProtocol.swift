@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+protocol TabItemDelegateProtocol: AnyObject {
+    
+    func tabView(_ tabView: TabView, didSelectTabAtIndex index: Int)
+}

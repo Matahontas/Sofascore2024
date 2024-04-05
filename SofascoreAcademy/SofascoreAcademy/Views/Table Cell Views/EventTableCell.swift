@@ -34,13 +34,13 @@ extension EventTableCell {
     
     func set(eventModel: EventModel) {
         eventView.homeTeamImage(eventModel.homeTeamLogo)
-        eventView.awayTeamImage(eventModel.awayTeamLogo)
-        eventView.homeTeamLabel(eventModel.homeTeamName)
-        eventView.awayTeamLabel(eventModel.awayTeamName)
-        eventView.homeTeamScore(eventModel.homeTeamScore)
-        eventView.awayTeamScore(eventModel.awayTeamScore)
-        eventView.startTime(EventDateHelper.getStartTime(for: eventModel.startTimestamp))
-        eventView.matchTime(EventDateHelper.getMatchMinute(for: eventModel.matchMinute))
+            .awayTeamImage(eventModel.awayTeamLogo)
+            .homeTeamLabel(eventModel.homeTeamName)
+            .awayTeamLabel(eventModel.awayTeamName)
+            .homeTeamScore(eventModel.homeTeamScore)
+            .awayTeamScore(eventModel.awayTeamScore)
+            .startTime(EventDateHelper.getStartTime(for: eventModel.startTimestamp))
+            .matchTime(EventDateHelper.getMatchMinute(for: eventModel.matchMinute))
         
         switch eventModel.matchStatus {
         case .notStarted:
@@ -60,35 +60,5 @@ extension EventTableCell {
                 .awayScoreLabelColor(eventModel.winnerCode == 2 ? .sofaBlack : .sofaGray)
                 .matchTimeColor(.sofaGray)
         }
-    }
-    
-    @discardableResult
-    func homeTeamLabelColor(_ color: UIColor) -> Self {
-        eventView.homeTeamLabelColor(color)
-        return self
-    }
-    
-    @discardableResult
-    func awayTeamLabelColor(_ color: UIColor) -> Self {
-        eventView.awayTeamLabelColor(color)
-        return self
-    }
-    
-    @discardableResult
-    func homeScoreLabelColor(_ color: UIColor) -> Self {
-        eventView.homeScoreLabelColor(color)
-        return self
-    }
-    
-    @discardableResult
-    func awayScoreLabelColor(_ color: UIColor) -> Self {
-        eventView.awayScoreLabelColor(color)
-        return self
-    }
-    
-    @discardableResult
-    func matchTimeLabelColor(_ color: UIColor) -> Self {
-        eventView.matchTimeColor(color)
-        return self
     }
 }

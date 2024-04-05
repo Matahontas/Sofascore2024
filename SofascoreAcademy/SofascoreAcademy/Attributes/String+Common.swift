@@ -9,6 +9,9 @@ import Foundation
 
 extension String {
     
+    static let football_string = NSLocalizedString("Football", comment: "Sport")
+    static let basketball_string = NSLocalizedString("Basketball", comment: "Sport")
+    static let american_football_abb = NSLocalizedString("Am. Football", comment: "Sport")
     static let man_utd = NSLocalizedString("Manchester United", comment: "Team")
     static let barcelona = NSLocalizedString("Barcelona", comment: "Team")
     static let spain = NSLocalizedString("Spain", comment: "Country")
@@ -23,6 +26,7 @@ extension String {
     static let ligue_1 = NSLocalizedString("Ligue 1", comment: "League")
     static let full_time = NSLocalizedString("FT", comment: "Full time abbreviation")
     static let no_match_minute = NSLocalizedString("-", comment: "No match minute displayed")
-
-
+    static let settings_title = NSLocalizedString("Settings", comment: "Settings title")
+    static let dismiss_string = NSLocalizedString("Dismiss", comment: "Dismiss label")
+    static let event_details_title = NSLocalizedString("Event Details", comment: "Event details title")
 }

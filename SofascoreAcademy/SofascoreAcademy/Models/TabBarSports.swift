@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+enum TabBarSports {
+    
+    case football
+    case basketball
+    case american_football
+}
