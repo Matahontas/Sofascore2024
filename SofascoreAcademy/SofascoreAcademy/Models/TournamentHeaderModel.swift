@@ -25,7 +25,18 @@ extension TournamentHeaderModel {
         TournamentHeaderModel(countryName: .germany,
                             leagueName: .bundesliga,
                             leagueLogo: .laLigaLogo
+                           ),
+        TournamentHeaderModel(countryName: .england,
+                            leagueName: .premier_league,
+                            leagueLogo: .laLigaLogo
+                           ),
+        TournamentHeaderModel(countryName: .italy,
+                            leagueName: .serie_a,
+                            leagueLogo: .laLigaLogo
+                           ),
+        TournamentHeaderModel(countryName: .france,
+                            leagueName: .ligue_1,
+                            leagueLogo: .laLigaLogo
                            )
     ]
 }
-

@@ -27,15 +27,12 @@ class TournamentHeaderView: BaseView {
     }
     
     override func styleViews() {
-        backgroundColor = .white
-        
         leagueLabelStack.axis = .horizontal
-        
         countryLabel.font = .headline3
         countryLabel.numberOfLines = 1
         
+        pointerRightImageView.tintColor = .sofaGray
         pointerRightImageView.image = .icPointerRight
-        pointerRightImageView.alpha = 0.4
         
         leagueLabel.font = .headline3
         leagueLabel.textColor = .sofaGray
@@ -45,12 +42,11 @@ class TournamentHeaderView: BaseView {
     override func setupConstraints() {
         logoImageView.snp.makeConstraints {
             $0.size.equalTo(32)
-            $0.top.equalToSuperview()
+            $0.top.bottom.equalToSuperview().inset(12)
             $0.leading.equalToSuperview().inset(16)
-            $0.bottom.equalToSuperview().inset(12)
         }
         leagueLabelStack.snp.makeConstraints {
-            $0.top.equalToSuperview()
+            $0.top.equalToSuperview().inset(16)
             $0.leading.equalTo(logoImageView.snp.trailing).offset(32)
             $0.bottom.equalToSuperview().inset(16)
             $0.trailing.lessThanOrEqualToSuperview()

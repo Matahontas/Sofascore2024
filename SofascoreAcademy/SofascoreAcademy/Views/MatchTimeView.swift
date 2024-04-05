@@ -43,10 +43,12 @@ class MatchTimeView: BaseView {
             $0.top.equalToSuperview().inset(10)
             $0.leading.equalToSuperview().inset(4)
             $0.trailing.equalToSuperview().inset(4)
+            $0.bottom.equalToSuperview().inset(30)
         }
         matchTimeLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(30)
+            $0.top.equalTo(startTimeLabel.snp.bottom).offset(4)
             $0.leading.trailing.equalToSuperview().inset(4)
+            $0.bottom.equalToSuperview().inset(10)
         }
         dividerView.snp.makeConstraints {
             $0.width.equalTo(1)
