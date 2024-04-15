@@ -14,9 +14,9 @@ class TabView: BaseView {
     
     private let barItemsStackView: UIStackView = .init()
     private var tabItemViews: [TabItemView] = .init()
-    private let verticalLine: UIView = . init()
+    private let tabViewIndicator: UIView = .init()
     private let tabItems = TabBarItemModel.sampleData
-    private var verticalLineLeadingConstraint: Constraint?
+    private var tabViewIndicatorLeadingConstraint: Constraint?
     weak var delegate: TabItemDelegateProtocol?
     
     override func addViews() {
@@ -28,8 +28,7 @@ class TabView: BaseView {
             tabItemViews.append(tabItemView)
             barItemsStackView.addArrangedSubview(tabItemView)
         }
-        addSubview(verticalLine)
-        
+        addSubview(tabViewIndicator)
     }
     
     override func styleViews() {
@@ -37,30 +36,29 @@ class TabView: BaseView {
         barItemsStackView.axis = .horizontal
         barItemsStackView.distribution = .fillProportionally
         
-        verticalLine.backgroundColor = .sofaWhite
-        
+        tabViewIndicator.backgroundColor = .sofaWhite
     }
     
     override func setupConstraints() {
         
         barItemsStackView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+            $0.height.equalTo(48)
         }
-        let verticalLineWidth = (UIScreen.main.bounds.width / CGFloat(tabItemViews.count)) - 16
-        let leadingOffset = UserDefaults.standard.integer(forKey: "tabIndex") * (Int(UIScreen.main.bounds.width) / tabItemViews.count) + 8
-        verticalLine.snp.makeConstraints {
+        let tabViewIndicatorWidth = (UIScreen.main.bounds.width / CGFloat(tabItemViews.count)) - 16
+        tabViewIndicator.snp.makeConstraints {
             $0.bottom.equalToSuperview()
             $0.height.equalTo(4)
-            $0.width.equalTo(verticalLineWidth)
-            verticalLineLeadingConstraint = $0.leading.equalToSuperview().offset(leadingOffset).constraint
+            $0.width.equalTo(tabViewIndicatorWidth)
+            tabViewIndicatorLeadingConstraint = $0.leading.equalToSuperview().offset(8).constraint
         }
     }
     
     override func setupGestureRecognizers() {
         for (index, tabItemView) in tabItemViews.enumerated() {
+            tabItemView.tag = index
             let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
             tabItemView.addGestureRecognizer(tapGestureRecognizer)
-            tabItemView.tag = index
         }
     }
 }
@@ -69,23 +67,22 @@ extension TabView {
     
     @objc private func handleTap(_ sender: UITapGestureRecognizer) {
         
-        guard let tappedTabItemView = sender.view as? TabItemView else { return }
-        UserDefaults.standard.set(tappedTabItemView.tag, forKey: "tabIndex")
-
-        delegate?.tabView(self, didSelectTabAtIndex: UserDefaults.standard.integer(forKey: "tabIndex"))
-        
-        let newLeadingOffset = tappedTabItemView.frame.origin.x + 8
-        verticalLineLeadingConstraint?.update(offset: newLeadingOffset)
-        
+        delegate?.tabViewTapped(didSelectTabAtIndex: sender.view?.tag ?? 0)
+    }
+    
+    @discardableResult
+    func updateTabViewIndicatorOffset(_ index: Int) -> Self {
+        tabViewIndicatorLeadingConstraint?.update(offset: index * (Int(UIScreen.main.bounds.width) / tabItemViews.count) + 8)
+        return self
+    }
+    
+    @discardableResult
+    func animateTabViewIndicator() -> Self {
         UIView.animate(animations: {
             self.layoutIfNeeded()
         }) {_ in
-            
-            let animation: CATransition = CATransition()
-            animation.duration = 0.3
-            animation.type = .fade
-            animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
-            self.verticalLine.layer.add(animation, forKey: "verticalLineTransition")
+            self.tabViewIndicator.layer.add(AnimationsHelper.applyFadeTransition(), forKey: "tabViewIndicatorTransition")
         }
+        return self
     }
 }

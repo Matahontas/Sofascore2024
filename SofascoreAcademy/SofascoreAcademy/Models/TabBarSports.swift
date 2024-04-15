@@ -12,4 +12,15 @@ enum TabBarSports {
     case football
     case basketball
     case american_football
+    
+    var sportIndex: Int {
+        switch self {
+        case .football:
+            return 0
+        case .basketball:
+            return 1
+        case .american_football:
+            return 2
+        }
+    }
 }

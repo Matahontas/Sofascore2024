@@ -15,7 +15,7 @@ class MainHeaderView: BaseView {
     private let sofascoreLockupImageView: UIImageView = .init()
     private let trophyIconButton: UIButton = .init()
     private let settingsIconButton: UIButton = .init()
-    var settingButtonTapHandler: (() -> Void)? = nil
+    var settingsButtonTapHandler: (() -> Void)? = nil
     
     override func addViews() {
         addSubview(sofascoreLockupImageView)
@@ -63,6 +63,6 @@ extension MainHeaderView {
     
     @objc
     func settingsButtonAction() {
-        settingButtonTapHandler?()
+        settingsButtonTapHandler?()
     }
 }

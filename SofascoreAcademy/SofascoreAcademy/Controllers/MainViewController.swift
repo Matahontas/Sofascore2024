@@ -10,28 +10,31 @@ import SnapKit
 import SofaAcademic
 import UIKit
 
-class MainViewController: UIViewController, BaseViewProtocol, TabItemDelegateProtocol {
+class MainViewController: UIViewController, BaseViewProtocol {
     
     private let safeAreaCoverView: SafeAreaCoverView = .init()
     private let mainHeaderView: MainHeaderView = .init()
     private let eventsViewController: EventsViewController = .init()
-    private let settingsViewController: SettingsViewController = .init()
     private let containerView: BaseView = .init()
     private let tabView: TabView = .init()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabView.delegate = self
         
         addViews()
         setupConstraints()
         styleViews()
+        setupGestureRecognizers()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
-        
-        eventsViewController.dataIndex(UserDefaults.standard.integer(forKey: "tabIndex"))
+        eventsViewController.dataIndex(UserDefaultsHelper[.tabBarIndex])
+        tabView.updateTabViewIndicatorOffset(UserDefaultsHelper[.tabBarIndex])
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
     }
     
     func addViews() {
@@ -46,17 +49,15 @@ class MainViewController: UIViewController, BaseViewProtocol, TabItemDelegatePro
         safeAreaCoverView.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(60)
+            $0.height.equalTo(view.safeAreaLayoutGuide.snp.height)
         }
         mainHeaderView.snp.makeConstraints {
             $0.top.equalTo(safeAreaCoverView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(48)
         }
         tabView.snp.makeConstraints {
             $0.top.equalTo(mainHeaderView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(48)
         }
         containerView.snp.makeConstraints {
             $0.top.equalTo(tabView.snp.bottom)
@@ -65,19 +66,13 @@ class MainViewController: UIViewController, BaseViewProtocol, TabItemDelegatePro
     }
     
     func styleViews() {
-        mainHeaderView.settingButtonTapHandler = {
-            self.showSettings()
-        }
+        tabView.delegate = self
     }
     
-    func tabView(_ tabView: TabView, didSelectTabAtIndex index: Int) {
-        
-        let eventsViewController = EventsViewController()
-        eventsViewController.dataIndex(index)
-        containerView.addSubview(eventsViewController.view)
-        remove(self.children.first ?? UIViewController())
-        
-        add(eventsViewController)
+    func setupGestureRecognizers() {
+        mainHeaderView.settingsButtonTapHandler = {
+            self.showSettings()
+        }
     }
 }
 
@@ -90,6 +85,7 @@ extension MainViewController {
         child.view.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        containerView.layer.add(AnimationsHelper.applyFadeTransition(), forKey: "childViewTransition")
     }
 
     func remove(_ child: UIViewController) {
@@ -109,6 +105,19 @@ extension MainViewController {
     }
 }
 
-#Preview {
-    MainViewController()
+extension MainViewController: TabItemDelegateProtocol {
+    
+    func tabViewTapped(didSelectTabAtIndex index: Int) {
+        
+        tabView.updateTabViewIndicatorOffset(index)
+        tabView.animateTabViewIndicator()
+        UserDefaultsHelper[.tabBarIndex] = index
+
+        let eventsViewController = EventsViewController()
+        eventsViewController.dataIndex(index)
+        remove(self.children.first ?? UIViewController())
+        containerView.addSubview(eventsViewController.view)
+        
+        add(eventsViewController)
+    }
 }

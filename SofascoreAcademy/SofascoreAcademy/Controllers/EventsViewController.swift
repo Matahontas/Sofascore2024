@@ -15,7 +15,7 @@ class EventsViewController: UIViewController, BaseViewProtocol {
     private var tournaments = TournamentHeaderModel.sampleData
     private var events = [EventModel.sampleDataFootball, EventModel.sampleDataBasketball, EventModel.sampleDataAmFootball]
     private let tableView: UITableView = .init()
-    private var dataIndex: Int = UserDefaults.standard.integer(forKey: "tabIndex")
+    private var tabIndex: Int = UserDefaultsHelper[.tabBarIndex]
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +52,7 @@ extension EventsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        events[dataIndex][tournaments[section].countryName]?.count ?? 0
+        events[tabIndex][tournaments[section].countryName]?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -60,14 +60,14 @@ extension EventsViewController: UITableViewDataSource, UITableViewDelegate {
         else {
             return UITableViewCell()
         }
-        guard let event = events[dataIndex][tournaments[indexPath.section].countryName]?[indexPath.row] else { return UITableViewCell() }
-        let eventTapGesture = UITapGestureRecognizer(target: self, action: #selector(eventViewTapped))
+        guard let event = events[tabIndex][tournaments[indexPath.section].countryName]?[indexPath.row] else { return UITableViewCell() }
         
         cell.set(eventModel: event)
-        
-        cell.addGestureRecognizer(eventTapGesture)
-
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.eventViewTapped()
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -92,11 +92,7 @@ extension EventsViewController {
     
     @discardableResult
     func dataIndex(_ index: Int) -> Self {
-        dataIndex = index
+        tabIndex = index
         return self
     }
-}
-
-#Preview {
-    EventsViewController()
 }

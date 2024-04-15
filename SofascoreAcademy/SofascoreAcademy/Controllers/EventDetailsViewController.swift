@@ -21,10 +21,6 @@ class EventDetailsViewController: UIViewController, BaseViewProtocol {
         styleViews()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.isNavigationBarHidden = false
-    }
-    
     func addViews() {
     }
     

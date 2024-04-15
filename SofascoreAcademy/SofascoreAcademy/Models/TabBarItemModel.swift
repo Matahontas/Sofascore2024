@@ -13,16 +13,6 @@ struct TabBarItemModel {
     var tabItemIcon: UIImage
     var tabItemName: String
     var sportTag: TabBarSports
-    var sportIndex: Int {
-        switch sportTag {
-        case .football:
-            return 0
-        case .basketball:
-            return 1
-        case .american_football:
-            return 2
-        }
-    }
 }
 
 extension TabBarItemModel {

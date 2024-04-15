@@ -21,10 +21,6 @@ class SettingsViewController: UIViewController, BaseViewProtocol {
         styleViews()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.isNavigationBarHidden = false
-    }
-    
     func addViews() {
     }
     
@@ -35,8 +31,11 @@ class SettingsViewController: UIViewController, BaseViewProtocol {
         title = .settings_title
         view.backgroundColor = .systemBackground
         
-        navigationItem.setLeftBarButton(UIBarButtonItem(title: .dismiss_string, style: .done, target: self, action: #selector(dismissSettingsView))
-                                        , animated: true)
+        navigationItem.setLeftBarButton(
+            UIBarButtonItem(title: .dismiss_string,
+                            style: .done,target: self,
+                            action: #selector(dismissSettingsView)),
+            animated: true)
     }
 }
 

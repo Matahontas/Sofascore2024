@@ -9,5 +9,5 @@ import Foundation
 
 protocol TabItemDelegateProtocol: AnyObject {
     
-    func tabView(_ tabView: TabView, didSelectTabAtIndex index: Int)
+    func tabViewTapped(didSelectTabAtIndex index: Int)
 }

@@ -19,6 +19,8 @@
 		403B1B242B9F0E4000AD49C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B1B232B9F0E4000AD49C2 /* AppDelegate.swift */; };
 		403B1B2D2B9F0E4100AD49C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 403B1B2C2B9F0E4100AD49C2 /* Assets.xcassets */; };
 		403B1B302B9F0E4100AD49C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 403B1B2E2B9F0E4100AD49C2 /* LaunchScreen.storyboard */; };
+		403D4B032BCBEA90005936BA /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403D4B022BCBEA90005936BA /* UserDefaultsHelper.swift */; };
+		403D4B052BCC26C0005936BA /* AnimationsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403D4B042BCC26C0005936BA /* AnimationsHelper.swift */; };
 		405F38B42BBED85100FE9F95 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F38B32BBED85100FE9F95 /* TabView.swift */; };
 		405F38BA2BBEE94300FE9F95 /* TabItemDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F38B92BBEE94300FE9F95 /* TabItemDelegateProtocol.swift */; };
 		406838FB2BA5E2AD00B7FF60 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 406838F82BA5E2AD00B7FF60 /* Roboto-Bold.ttf */; };
@@ -56,6 +58,8 @@
 		403B1B2C2B9F0E4100AD49C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		403B1B2F2B9F0E4100AD49C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		403B1B312B9F0E4100AD49C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		403D4B022BCBEA90005936BA /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
+		403D4B042BCC26C0005936BA /* AnimationsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsHelper.swift; sourceTree = "<group>"; };
 		405F38B32BBED85100FE9F95 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		405F38B92BBEE94300FE9F95 /* TabItemDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItemDelegateProtocol.swift; sourceTree = "<group>"; };
 		406838F82BA5E2AD00B7FF60 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
@@ -102,6 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				4097FBDF2BAB78C200CB4692 /* EventDateHelper.swift */,
+				403D4B022BCBEA90005936BA /* UserDefaultsHelper.swift */,
+				403D4B042BCC26C0005936BA /* AnimationsHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -314,9 +320,11 @@
 			files = (
 				4037CA532BAC50F000627202 /* String+Common.swift in Sources */,
 				40932A382BAD898E00DCD1D6 /* TournamentHeaderModel.swift in Sources */,
+				403D4B052BCC26C0005936BA /* AnimationsHelper.swift in Sources */,
 				40932A342BAD860A00DCD1D6 /* TournamentHeaderView.swift in Sources */,
 				40932A2C2BAD83DA00DCD1D6 /* EventView.swift in Sources */,
 				40932A362BAD88D200DCD1D6 /* EventModel.swift in Sources */,
+				403D4B032BCBEA90005936BA /* UserDefaultsHelper.swift in Sources */,
 				4024C3962BBC6C4200B86351 /* SafeAreaCoverView.swift in Sources */,
 				4024C3922BBC672100B86351 /* TabItemView.swift in Sources */,
 				401626522BACD6CF00F08AF4 /* TournamentTableHeader.swift in Sources */,
