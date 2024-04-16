@@ -21,6 +21,8 @@
 		403B1B302B9F0E4100AD49C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 403B1B2E2B9F0E4100AD49C2 /* LaunchScreen.storyboard */; };
 		403D4B032BCBEA90005936BA /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403D4B022BCBEA90005936BA /* UserDefaultsHelper.swift */; };
 		403D4B052BCC26C0005936BA /* AnimationsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403D4B042BCC26C0005936BA /* AnimationsHelper.swift */; };
+		403D4B082BCE5DDF005936BA /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403D4B072BCE5DDF005936BA /* ApiClient.swift */; };
+		403D4B0A2BCE5E0A005936BA /* ApiEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403D4B092BCE5E0A005936BA /* ApiEventModel.swift */; };
 		405F38B42BBED85100FE9F95 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F38B32BBED85100FE9F95 /* TabView.swift */; };
 		405F38BA2BBEE94300FE9F95 /* TabItemDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F38B92BBEE94300FE9F95 /* TabItemDelegateProtocol.swift */; };
 		406838FB2BA5E2AD00B7FF60 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 406838F82BA5E2AD00B7FF60 /* Roboto-Bold.ttf */; };
@@ -60,6 +62,8 @@
 		403B1B312B9F0E4100AD49C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		403D4B022BCBEA90005936BA /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		403D4B042BCC26C0005936BA /* AnimationsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsHelper.swift; sourceTree = "<group>"; };
+		403D4B072BCE5DDF005936BA /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		403D4B092BCE5E0A005936BA /* ApiEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiEventModel.swift; sourceTree = "<group>"; };
 		405F38B32BBED85100FE9F95 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		405F38B92BBEE94300FE9F95 /* TabItemDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItemDelegateProtocol.swift; sourceTree = "<group>"; };
 		406838F82BA5E2AD00B7FF60 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
@@ -131,6 +135,7 @@
 		403B1B222B9F0E4000AD49C2 /* SofascoreAcademy */ = {
 			isa = PBXGroup;
 			children = (
+				403D4B062BCE5DD0005936BA /* Networking */,
 				405F38B82BBEE93500FE9F95 /* Protocols */,
 				40F216222BA7A78F00A777BE /* Attributes */,
 				40E803D92BA3246A0097C8C1 /* Controllers */,
@@ -144,6 +149,14 @@
 				403B1B312B9F0E4100AD49C2 /* Info.plist */,
 			);
 			path = SofascoreAcademy;
+			sourceTree = "<group>";
+		};
+		403D4B062BCE5DD0005936BA /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				403D4B072BCE5DDF005936BA /* ApiClient.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		405F38B52BBED85900FE9F95 /* Tab Views */ = {
@@ -190,6 +203,7 @@
 				40F216172BA7761900A777BE /* MatchStatus.swift */,
 				40E50C402BBD770300811859 /* TabBarSports.swift */,
 				40E50C462BBDE2C800811859 /* TabBarItemModel.swift */,
+				403D4B092BCE5E0A005936BA /* ApiEventModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -325,10 +339,12 @@
 				40932A2C2BAD83DA00DCD1D6 /* EventView.swift in Sources */,
 				40932A362BAD88D200DCD1D6 /* EventModel.swift in Sources */,
 				403D4B032BCBEA90005936BA /* UserDefaultsHelper.swift in Sources */,
+				403D4B0A2BCE5E0A005936BA /* ApiEventModel.swift in Sources */,
 				4024C3962BBC6C4200B86351 /* SafeAreaCoverView.swift in Sources */,
 				4024C3922BBC672100B86351 /* TabItemView.swift in Sources */,
 				401626522BACD6CF00F08AF4 /* TournamentTableHeader.swift in Sources */,
 				4024C38E2BBC66D600B86351 /* MainHeaderView.swift in Sources */,
+				403D4B082BCE5DDF005936BA /* ApiClient.swift in Sources */,
 				40E50C472BBDE2C800811859 /* TabBarItemModel.swift in Sources */,
 				405F38B42BBED85100FE9F95 /* TabView.swift in Sources */,
 				4024C38A2BBC586200B86351 /* EventDetailsViewController.swift in Sources */,
