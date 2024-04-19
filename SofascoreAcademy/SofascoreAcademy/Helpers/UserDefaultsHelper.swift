@@ -9,12 +9,9 @@ import Foundation
 
 enum UserDefaultsHelper {
     
-    static subscript(key: String) -> Int {
-        get {
-            return UserDefaults.standard.integer(forKey: key)
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: key)
-        }
+    static let tabBarIndexKey = "tabBarIndex"
+    static var tabBarIndex: Int {
+        get { return UserDefaults.standard.integer(forKey: tabBarIndexKey) }
+        set { UserDefaults.standard.set(newValue, forKey: tabBarIndexKey) }
     }
 }

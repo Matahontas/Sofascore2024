@@ -29,8 +29,6 @@ class MainViewController: UIViewController, BaseViewProtocol {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
-        eventsViewController.dataIndex(UserDefaultsHelper[.tabBarIndex])
-        tabView.updateTabViewIndicatorOffset(UserDefaultsHelper[.tabBarIndex])
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -111,7 +109,7 @@ extension MainViewController: TabItemDelegateProtocol {
         
         tabView.updateTabViewIndicatorOffset(index)
         tabView.animateTabViewIndicator()
-        UserDefaultsHelper[.tabBarIndex] = index
+        UserDefaultsHelper.tabBarIndex = index
 
         let eventsViewController = EventsViewController()
         eventsViewController.dataIndex(index)
