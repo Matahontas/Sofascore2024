@@ -29,6 +29,5 @@ extension String {
     static let settings_title = NSLocalizedString("Settings", comment: "Settings title")
     static let dismiss_string = NSLocalizedString("Dismiss", comment: "Dismiss label")
     static let event_details_title = NSLocalizedString("Event Details", comment: "Event details title")
-    static let tabBarIndex = NSLocalizedString("tabBarIndex", comment: "Index for selected tab bar")
-    static let sofaApiUrlString = NSLocalizedString("https://static-api.sofascore.dev/api/event/", comment: "Api url string")
+    static let sofaApiUrlString = "https://static-api.sofascore.dev/api/event/"
 }
