@@ -124,7 +124,6 @@ extension MainViewController: TabItemDelegateProtocol {
         tabView.updateTabViewIndicatorOffset(index)
         tabView.animateTabViewIndicator()
         UserDefaultsHelper.tabBarIndex = index
-        
         let eventsViewController = EventsViewController()
         eventsViewController.dataIndex(index)
         remove(self.children.first ?? UIViewController())
