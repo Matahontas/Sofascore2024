@@ -12,11 +12,11 @@ import UIKit
 
 class EventsViewController: UIViewController, BaseViewProtocol {
     
-    var tournaments = TournamentHeaderModel.sampleData
-    var events = EventModel.sampleData
-    
+    private var tournaments = TournamentHeaderModel.sampleData
+    private var events = [EventModel.sampleDataFootball, EventModel.sampleDataBasketball, EventModel.sampleDataAmFootball]
     private let tableView: UITableView = .init()
-    
+    private var tabIndex: Int = UserDefaultsHelper.tabBarIndex
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,14 +31,11 @@ class EventsViewController: UIViewController, BaseViewProtocol {
     
     func setupConstraints() {
         tableView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
     }
     
     func styleViews() {
-        view.safeAreaLayoutGuide.owningView?.backgroundColor = .safeArea
-        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(TournamentTableHeader.self, forHeaderFooterViewReuseIdentifier: "TournamentTableHeader")
@@ -55,7 +52,7 @@ extension EventsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        events[tournaments[section].countryName]?.count ?? 0
+        events[tabIndex][tournaments[section].countryName]?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,11 +60,14 @@ extension EventsViewController: UITableViewDataSource, UITableViewDelegate {
         else {
             return UITableViewCell()
         }
-        let event = events[tournaments[indexPath.section].countryName]?[indexPath.row] ?? EventModel.emptyEventModel
+        guard let event = events[tabIndex][tournaments[indexPath.section].countryName]?[indexPath.row] else { return UITableViewCell() }
         
         cell.set(eventModel: event)
-
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.eventViewTapped()
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -83,6 +83,16 @@ extension EventsViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-#Preview {
-    EventsViewController()
+extension EventsViewController {
+    
+    @objc func eventViewTapped() {
+        let eventDetailsViewController = EventDetailsViewController()
+        navigationController?.pushViewController(eventDetailsViewController, animated: true)
+    }
+    
+    @discardableResult
+    func dataIndex(_ index: Int) -> Self {
+        tabIndex = index
+        return self
+    }
 }
