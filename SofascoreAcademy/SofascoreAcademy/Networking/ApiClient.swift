@@ -6,11 +6,13 @@
 //
 import Foundation
 
-class ApiClient {
+enum ApiClient {
     
-    func getEvent(id: Int) async throws -> EventResponse{
+    static let sofaApiUrlString = "https://static-api.sofascore.dev/"
+    
+    static func getEvent(id: Int) async throws -> EventResponse{
         
-        let urlString = .sofaApiUrlString + "\(id)"
+        let urlString = sofaApiUrlString + "api/" + "event/" + "\(id)"
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }

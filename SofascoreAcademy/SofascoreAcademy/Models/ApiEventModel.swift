@@ -175,7 +175,6 @@ struct Country: Codable {
     let flag: String
 }
 
-//Može li primiti Color???
 struct TeamColors: Codable {
     
     let primary: String
