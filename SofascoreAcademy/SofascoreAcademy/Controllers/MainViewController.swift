@@ -17,7 +17,6 @@ class MainViewController: UIViewController, BaseViewProtocol {
     private let eventsViewController: EventsViewController = .init()
     private let containerView: BaseView = .init()
     private let tabView: TabView = .init()
-    private let apiClient: ApiClient = .init()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,7 +106,7 @@ extension MainViewController {
     func getApiData() {
         
         Task {
-            let event = try await apiClient.getEvent(id: 11352380)
+            let event = try await ApiClient.getEvent(id: 11352380)
             event.game.tournaments.forEach {
                 $0.events.forEach {
                     print($0.homeTeam.slug)
