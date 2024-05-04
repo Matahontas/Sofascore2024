@@ -50,7 +50,8 @@ class TabView: BaseView {
             $0.bottom.equalToSuperview()
             $0.height.equalTo(4)
             $0.width.equalTo(tabViewIndicatorWidth)
-            tabViewIndicatorLeadingConstraint = $0.leading.equalToSuperview().offset(UserDefaultsHelper.tabBarIndex * (Int(UIScreen.main.bounds.width) / tabItemViews.count) + 8).constraint        }
+            tabViewIndicatorLeadingConstraint = $0.leading.equalToSuperview().offset(UserDefaultsHelper.tabBarIndex * (Int(UIScreen.main.bounds.width) / tabItemViews.count) + 8).constraint
+        }
     }
     
     override func setupGestureRecognizers() {

@@ -25,6 +25,7 @@ class MainViewController: UIViewController, BaseViewProtocol {
         setupConstraints()
         styleViews()
         setupGestureRecognizers()
+        getApiData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,12 +86,12 @@ extension MainViewController {
         }
         containerView.layer.add(AnimationsHelper.applyFadeTransition(), forKey: "childViewTransition")
     }
-
+    
     func remove(_ child: UIViewController) {
         guard child.parent != nil else {
             return
         }
-
+        
         child.willMove(toParent: nil)
         child.view.removeFromSuperview()
         child.removeFromParent()
@@ -101,6 +102,18 @@ extension MainViewController {
         
         navigationController?.pushViewController(settingsViewController, animated: true)
     }
+    
+    func getApiData() {
+        
+        Task {
+            let event = try await ApiClient.getEvent(id: 11352380)
+            event.game.tournaments.forEach {
+                $0.events.forEach {
+                    print($0.homeTeam.slug)
+                }
+            }
+        }
+    }
 }
 
 extension MainViewController: TabItemDelegateProtocol {
@@ -110,7 +123,6 @@ extension MainViewController: TabItemDelegateProtocol {
         tabView.updateTabViewIndicatorOffset(index)
         tabView.animateTabViewIndicator()
         UserDefaultsHelper.tabBarIndex = index
-
         let eventsViewController = EventsViewController()
         eventsViewController.dataIndex(index)
         remove(self.children.first ?? UIViewController())
