@@ -31,3 +31,8 @@ extension String {
     static let event_details_title = NSLocalizedString("Event Details", comment: "Event details title")
     static let current_day_uppercase = NSLocalizedString("TODAY", comment: "Current day")
 }
+
+extension String {
+    
+    static let sofa_api_url_string = String("https://academy-backend.sofascore.dev/")
+}

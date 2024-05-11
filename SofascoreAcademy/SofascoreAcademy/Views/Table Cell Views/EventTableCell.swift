@@ -34,8 +34,8 @@ extension EventTableCell {
     
     func set(eventResponse: EventResponse) {
         
-        eventView.homeTeamImage(UserDefaultsHelper.sofaApiUrlString + "team/" + "\(eventResponse.homeTeam.id)/" + "image", placeHolder: UIImage(systemName: "person.3.fill"))
-            .awayTeamImage(UserDefaultsHelper.sofaApiUrlString + "team/" + "\(eventResponse.awayTeam.id)/" + "image", placeHolder: UIImage(systemName: "person.3.fill"))
+        eventView.homeTeamImage(.sofa_api_url_string + "team/" + "\(eventResponse.homeTeam.id)/" + "image", placeHolder: UIImage(systemName: "person.3.fill"))
+            .awayTeamImage(.sofa_api_url_string + "team/" + "\(eventResponse.awayTeam.id)/" + "image", placeHolder: UIImage(systemName: "person.3.fill"))
             .homeTeamLabel(eventResponse.homeTeam.name)
             .awayTeamLabel(eventResponse.awayTeam.name)
             .homeTeamScore(eventResponse.homeScore.total ?? -1)

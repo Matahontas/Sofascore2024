@@ -4,6 +4,7 @@
 //
 //  Created by Matija Pavicic on 16.04.2024..
 //
+
 import Foundation
 
 enum EventApiError: Error {
@@ -13,13 +14,10 @@ enum EventApiError: Error {
 }
 
 enum ApiClient {
-    
-    static let sofaApiUrlString = "https://academy-backend.sofascore.dev/"
-    
-    static func eventApi(slug: String, date: String, requestMethod: String) async throws -> [EventResponse]{
         
-        UserDefaultsHelper.sofaApiUrlString = sofaApiUrlString
-        let urlString = sofaApiUrlString + "sport/" + "\(slug)/" + "events/" + "\(date)"
+    static func getApiData<T: Decodable>(urlAddition: String, requestMethod: String, responseType: T.Type) async throws -> T {
+        
+        let urlString = .sofa_api_url_string + "\(urlAddition)"
         guard let url = URL(string: urlString) else {
             throw EventApiError.invalidURL
         }
@@ -29,8 +27,8 @@ enum ApiClient {
             
             let (data, _) = try await URLSession.shared.data(for: request)
             
-            let eventResponse = try JSONDecoder().decode([EventResponse].self, from: data)
-            return eventResponse
+            let responseData = try JSONDecoder().decode(responseType, from: data)
+            return responseData
         } catch {
             throw EventApiError.networkError(error)
         }

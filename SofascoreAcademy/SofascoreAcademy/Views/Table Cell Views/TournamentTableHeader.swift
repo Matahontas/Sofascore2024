@@ -36,6 +36,6 @@ extension TournamentTableHeader {
     func set(tournamentApiModel: Tournament) {
         tournamentHeaderView.countryName(tournamentApiModel.country.name)
             .leagueName(tournamentApiModel.name)
-            .leagueLogo(UserDefaultsHelper.sofaApiUrlString + "tournament/" + "\(tournamentApiModel.id)/" + "image", placeHolder: UIImage(systemName: "person.3.fill"))
+            .leagueLogo(.sofa_api_url_string + "tournament/" + "\(tournamentApiModel.id)/" + "image", placeHolder: UIImage(systemName: "person.3.fill"))
     }
 }

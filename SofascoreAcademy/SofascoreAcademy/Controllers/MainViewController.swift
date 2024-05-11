@@ -123,9 +123,12 @@ extension MainViewController {
         navigationController?.pushViewController(settingsViewController, animated: true)
     }
     
-    func getApiData(_ eventsViewController: EventsViewController) {
+    func getEventsData(_ eventsViewController: EventsViewController) {
+        
+        let apiUrlAddition = "sport/" + "\(UserDefaultsHelper.selectedSportApiSlug)/" + "events/" + UserDefaultsHelper.selectedDateApiSlug
         Task {
-            let event = try await ApiClient.eventApi(slug: UserDefaultsHelper.selectedSportApiSlug, date: UserDefaultsHelper.selectedDateApiSlug, requestMethod: "GET")
+            let event = try await ApiClient.getApiData(urlAddition: apiUrlAddition, requestMethod: "GET", responseType: [EventResponse].self)
+            
             eventsViewController.setEventsApiData(event)
         }
     }
@@ -143,7 +146,7 @@ extension MainViewController: TabItemDelegateProtocol, CalendarItemDelegateProto
         remove(self.children.first as? EventsViewController ?? UIViewController())
 
         let eventsViewController = EventsViewController()
-        getApiData(eventsViewController)
+        getEventsData(eventsViewController)
         addEvent(eventsViewController)
     }
     
@@ -155,7 +158,7 @@ extension MainViewController: TabItemDelegateProtocol, CalendarItemDelegateProto
         remove(self.children.first as? EventsViewController ?? UIViewController())
 
         let eventsViewController = EventsViewController()
-        getApiData(eventsViewController)
+        getEventsData(eventsViewController)
         addEvent(eventsViewController)
     }
 }

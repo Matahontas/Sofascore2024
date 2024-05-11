@@ -40,9 +40,7 @@ class CalendarViewController: UIViewController, BaseViewProtocol {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let initialIndexPath = IndexPath(item: currentDateIndex, section: 0)
-//        UserDefaultsHelper.selectedDateApiSlug = TabItemHelper.getSportSlugFromTabIndex(currentDateIndex)
-        collectionView.selectItem(at: initialIndexPath, animated: true, scrollPosition: .centeredHorizontally)
+        collectionView.selectItem(at: IndexPath(item: currentDateIndex, section: 0), animated: true, scrollPosition: .centeredHorizontally)
     }
     
     func addViews() {
