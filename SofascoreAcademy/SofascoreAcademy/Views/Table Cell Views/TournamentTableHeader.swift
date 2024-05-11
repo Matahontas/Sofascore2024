@@ -33,9 +33,9 @@ class TournamentTableHeader: UITableViewHeaderFooterView {
 
 extension TournamentTableHeader {
     
-    func set(tournamentHeaderModel: TournamentHeaderModel) {
-        tournamentHeaderView.countryName(tournamentHeaderModel.countryName)
-            .leagueName(tournamentHeaderModel.leagueName)
-            .leagueLogo(tournamentHeaderModel.leagueLogo)
+    func set(tournamentApiModel: Tournament) {
+        tournamentHeaderView.countryName(tournamentApiModel.country.name)
+            .leagueName(tournamentApiModel.name)
+            .leagueLogo(UserDefaultsHelper.sofaApiUrlString + "tournament/" + "\(tournamentApiModel.id)/" + "image", placeHolder: UIImage(systemName: "person.3.fill"))
     }
 }

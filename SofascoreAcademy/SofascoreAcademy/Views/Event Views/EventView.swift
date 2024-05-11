@@ -68,8 +68,8 @@ class EventView: BaseView {
 extension EventView {
     
     @discardableResult
-    func homeTeamImage(_ image: UIImage) -> Self {
-        homeTeamView.teamImage(image)
+    func homeTeamImage(_ URLString: String, placeHolder: UIImage?) -> Self {
+        homeTeamView.teamImage(URLString, placeHolder: placeHolder)
         return self
     }
     
@@ -86,8 +86,12 @@ extension EventView {
     }
     
     @discardableResult
-    func homeTeamScore(_ score: String) -> Self {
-        homeScoreLabel.text = score
+    func homeTeamScore(_ score: Int) -> Self {
+        if score == -1 {
+            homeScoreLabel.text = ""
+        } else {
+            homeScoreLabel.text = String(score)
+        }
         return self
     }
     
@@ -98,8 +102,8 @@ extension EventView {
     }
     
     @discardableResult
-    func awayTeamImage(_ image: UIImage) -> Self {
-        awayTeamView.teamImage(image)
+    func awayTeamImage(_ URLString: String, placeHolder: UIImage?) -> Self {
+        awayTeamView.teamImage(URLString, placeHolder: placeHolder)
         return self
     }
     
@@ -116,8 +120,12 @@ extension EventView {
     }
     
     @discardableResult
-    func awayTeamScore(_ score: String) -> Self {
-        awayScoreLabel.text = score
+    func awayTeamScore(_ score: Int) -> Self {
+        if score == -1 {
+            awayScoreLabel.text = ""
+        } else {
+            awayScoreLabel.text = String(score)
+        }
         return self
     }
     

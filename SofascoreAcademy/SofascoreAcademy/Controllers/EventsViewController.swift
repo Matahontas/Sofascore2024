@@ -12,11 +12,10 @@ import UIKit
 
 class EventsViewController: UIViewController, BaseViewProtocol {
     
-    private var tournaments = TournamentHeaderModel.sampleData
-    private var events = [EventModel.sampleDataFootball, EventModel.sampleDataBasketball, EventModel.sampleDataAmFootball]
     private let tableView: UITableView = .init()
-    private var tabIndex: Int = UserDefaultsHelper.tabBarIndex
-        
+    private var eventsByTournament: [Int:[EventResponse]] = [:]
+    private var sortedTournamentIds: [Int] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,11 +47,14 @@ class EventsViewController: UIViewController, BaseViewProtocol {
 extension EventsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return tournaments.count
+        
+        sortedTournamentIds.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        events[tabIndex][tournaments[section].countryName]?.count ?? 0
+        
+        let tournamentId = sortedTournamentIds[section]
+        return eventsByTournament[tournamentId]?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -60,39 +62,58 @@ extension EventsViewController: UITableViewDataSource, UITableViewDelegate {
         else {
             return UITableViewCell()
         }
-        guard let event = events[tabIndex][tournaments[indexPath.section].countryName]?[indexPath.row] else { return UITableViewCell() }
+        let tournamentId = sortedTournamentIds[indexPath.section]
         
-        cell.set(eventModel: event)
+        guard let event = eventsByTournament[tournamentId]?[indexPath.row] else {
+            return UITableViewCell()
+        }
+        
+        cell.set(eventResponse: event)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         self.eventViewTapped()
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TournamentTableHeader") as? TournamentTableHeader
         else {
             return UIView()
         }
-        let tournament = tournaments[section]
-        
-        header.set(tournamentHeaderModel: tournament)
-        
-        return header
+        let tournamentId = sortedTournamentIds[section]
+        if let tournament = eventsByTournament[tournamentId]?.first?.tournament {
+            header.set(tournamentApiModel: tournament)
+            return header
+        } else {
+            return UIView()
+        }
     }
 }
 
 extension EventsViewController {
     
     @objc func eventViewTapped() {
+        
         let eventDetailsViewController = EventDetailsViewController()
         navigationController?.pushViewController(eventDetailsViewController, animated: true)
     }
     
     @discardableResult
-    func dataIndex(_ index: Int) -> Self {
-        tabIndex = index
+    func setEventsApiData(_ eventResponse: [EventResponse]) -> Self {
+        
+        eventResponse.forEach {
+            if eventsByTournament[$0.tournament.id] == nil {
+                eventsByTournament[$0.tournament.id] = [$0]
+            } else {
+                eventsByTournament[$0.tournament.id]?.append($0)
+            }
+        }
+        let sortedKeys = eventsByTournament.keys.sorted()
+        sortedTournamentIds = sortedKeys
+        tableView.reloadData()
         return self
     }
 }
