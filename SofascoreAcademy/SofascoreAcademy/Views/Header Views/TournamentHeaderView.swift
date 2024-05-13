@@ -72,8 +72,8 @@ extension TournamentHeaderView {
     }
     
     @discardableResult
-    func leagueLogo(_ image: UIImage) -> Self {
-        logoImageView.image = image
+    func leagueLogo(_ URLString: String, placeHolder: UIImage?) -> Self {
+        logoImageView.imageFromServerURL(URLString, placeHolder: placeHolder)
         return self
     }
 }

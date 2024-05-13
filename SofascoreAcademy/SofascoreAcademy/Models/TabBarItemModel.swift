@@ -18,8 +18,8 @@ struct TabBarItemModel {
 extension TabBarItemModel {
     
     static let sampleData: [TabBarItemModel] = [
-        TabBarItemModel(tabItemIcon: .iconFootball, tabItemName: .football_string, sportTag: .football),
-        TabBarItemModel(tabItemIcon: .iconBasketball, tabItemName: .basketball_string, sportTag: .basketball),
-        TabBarItemModel(tabItemIcon: .iconAmericanFootball, tabItemName: .american_football_abb, sportTag: .american_football)
+        TabBarItemModel(tabItemIcon: .football, tabItemName: .football_string, sportTag: .football),
+        TabBarItemModel(tabItemIcon: .basketball, tabItemName: .basketball_string, sportTag: .basketball),
+        TabBarItemModel(tabItemIcon: .americanFootball, tabItemName: .american_football_abb, sportTag: .american_football)
     ]
 }

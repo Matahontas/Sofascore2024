@@ -43,8 +43,8 @@ class TeamView: BaseView {
 extension TeamView {
     
     @discardableResult
-    func teamImage(_ image: UIImage) -> Self {
-        teamImageView.image = image
+    func teamImage(_ URLString: String, placeHolder: UIImage?) -> Self {
+        teamImageView.imageFromServerURL(URLString, placeHolder: placeHolder)
         return self
     }
     

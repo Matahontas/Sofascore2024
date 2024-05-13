@@ -14,9 +14,10 @@ class MainViewController: UIViewController, BaseViewProtocol {
     
     private let safeAreaCoverView: SafeAreaCoverView = .init()
     private let mainHeaderView: MainHeaderView = .init()
-    private let eventsViewController: EventsViewController = .init()
     private let containerView: BaseView = .init()
     private let tabView: TabView = .init()
+    private let calendarViewController: CalendarViewController = .init()
+    private let calendarContainerView: BaseView = .init()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,6 @@ class MainViewController: UIViewController, BaseViewProtocol {
         setupConstraints()
         styleViews()
         setupGestureRecognizers()
-        getApiData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,8 +40,9 @@ class MainViewController: UIViewController, BaseViewProtocol {
         view.addSubview(safeAreaCoverView)
         view.addSubview(mainHeaderView)
         view.addSubview(tabView)
+        view.addSubview(calendarContainerView)
+        addCalendar(calendarViewController)
         view.addSubview(containerView)
-        add(eventsViewController)
     }
     
     func setupConstraints() {
@@ -58,26 +59,35 @@ class MainViewController: UIViewController, BaseViewProtocol {
             $0.top.equalTo(mainHeaderView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
         }
-        containerView.snp.makeConstraints {
+        calendarContainerView.snp.makeConstraints {
             $0.top.equalTo(tabView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(48)
+        }
+        containerView.snp.makeConstraints {
+            $0.top.equalTo(calendarContainerView.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
     
     func styleViews() {
         tabView.delegate = self
+        calendarViewController.delegate = self
+        containerView.backgroundColor = .sofaWhite
+        calendarContainerView.backgroundColor = .primaryDefaultDark
     }
     
     func setupGestureRecognizers() {
-        mainHeaderView.settingsButtonTapHandler = {
-            self.showSettings()
+        mainHeaderView.settingsButtonTapHandler = { [weak self] in
+            self?.showSettings()
         }
     }
 }
 
 extension MainViewController {
     
-    func add(_ child: UIViewController) {
+    func addEvent(_ child: UIViewController) {
+
         addChild(child)
         containerView.addSubview(child.view)
         child.didMove(toParent: self)
@@ -85,6 +95,16 @@ extension MainViewController {
             $0.edges.equalToSuperview()
         }
         containerView.layer.add(AnimationsHelper.applyFadeTransition(), forKey: "childViewTransition")
+    }
+    
+    func addCalendar(_ child: UIViewController) {
+        addChild(child)
+        calendarContainerView.addSubview(child.view)
+        child.didMove(toParent: self)
+        child.view.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        calendarContainerView.layer.add(AnimationsHelper.applyFadeTransition(), forKey: "calendarViewTransition")
     }
     
     func remove(_ child: UIViewController) {
@@ -103,31 +123,42 @@ extension MainViewController {
         navigationController?.pushViewController(settingsViewController, animated: true)
     }
     
-    func getApiData() {
+    func getEventsData(_ eventsViewController: EventsViewController) {
         
+        let apiUrlAddition = "sport/" + "\(UserDefaultsHelper.selectedSportApiSlug)/" + "events/" + UserDefaultsHelper.selectedDateApiSlug
         Task {
-            let event = try await ApiClient.getEvent(id: 11352380)
-            event.game.tournaments.forEach {
-                $0.events.forEach {
-                    print($0.homeTeam.slug)
-                }
-            }
+            let event = try await ApiClient.getApiData(urlAddition: apiUrlAddition, requestMethod: "GET", responseType: [EventResponse].self)
+            
+            eventsViewController.setEventsApiData(event)
         }
     }
 }
 
-extension MainViewController: TabItemDelegateProtocol {
+extension MainViewController: TabItemDelegateProtocol, CalendarItemDelegateProtocol {
     
     func tabViewTapped(didSelectTabAtIndex index: Int) {
         
         tabView.updateTabViewIndicatorOffset(index)
         tabView.animateTabViewIndicator()
         UserDefaultsHelper.tabBarIndex = index
+        UserDefaultsHelper.selectedSportApiSlug = TabItemHelper.getSportSlugFromTabIndex(index)
+    
+        remove(self.children.first as? EventsViewController ?? UIViewController())
+
         let eventsViewController = EventsViewController()
-        eventsViewController.dataIndex(index)
-        remove(self.children.first ?? UIViewController())
-        containerView.addSubview(eventsViewController.view)
+        getEventsData(eventsViewController)
+        addEvent(eventsViewController)
+    }
+    
+    func calendarItemTapped() {
         
-        add(eventsViewController)
+        calendarViewController.updateCurrentDateViewIndicatorPosition()
+        calendarViewController.animateCurrentDateViewIndicator()
+        
+        remove(self.children.first as? EventsViewController ?? UIViewController())
+
+        let eventsViewController = EventsViewController()
+        getEventsData(eventsViewController)
+        addEvent(eventsViewController)
     }
 }

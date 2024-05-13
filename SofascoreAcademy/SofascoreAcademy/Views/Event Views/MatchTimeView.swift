@@ -62,13 +62,34 @@ extension MatchTimeView {
     
     @discardableResult
     func startTime(_ time: String) -> Self {
-        startTimeLabel.text = time
+        let dateFormatter = DateFormatter()
+        let formattedTime: String
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        if let date = dateFormatter.date(from: time) {
+            let hour = Calendar.current.component(.hour, from: date)
+            let minute = Calendar.current.component(.minute, from: date)
+            formattedTime = String(format: "%02d:%02d", hour, minute)
+        } else {
+            formattedTime = "-"
+        }
+        startTimeLabel.text = formattedTime
         return self
     }
     
     @discardableResult
     func matchTime(_ time: String) -> Self {
-        matchTimeLabel.text = time
+        let dateFormatter = DateFormatter()
+        let formattedTime: String
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        if let date = dateFormatter.date(from: time) {
+            let dateComponents = Calendar.current.dateComponents([.hour, .minute], from: date)
+            let nowComponents = Calendar.current.dateComponents([.hour, .minute], from: Date())
+            let minutesDifference = Calendar.current.dateComponents([.minute], from: dateComponents, to: nowComponents).minute ?? 0
+            formattedTime = String(minutesDifference)
+        } else {
+            formattedTime = time
+        }
+        matchTimeLabel.text = formattedTime
         return self
     }
     
