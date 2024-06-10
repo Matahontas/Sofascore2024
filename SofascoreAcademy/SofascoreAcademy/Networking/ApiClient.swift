@@ -32,6 +32,5 @@ enum ApiClient {
         } catch {
             throw EventApiError.networkError(error)
         }
-
     }
 }

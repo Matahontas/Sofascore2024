@@ -11,7 +11,6 @@ import SofaAcademic
 import UIKit
 
 class EventsViewController: UIViewController, BaseViewProtocol {
-    
     private let tableView: UITableView = .init()
     private var eventsByTournament: [Int:[EventResponse]] = [:]
     private var sortedTournamentIds: [Int] = []

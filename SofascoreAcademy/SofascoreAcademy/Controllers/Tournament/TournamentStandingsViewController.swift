@@ -45,7 +45,6 @@ class TournamentStandingsViewController: UIViewController, BaseViewProtocol {
         tableView.reloadData()
         tableView.separatorStyle = .none
     }
-    
 }
 
 extension TournamentStandingsViewController: UITableViewDataSource, UITableViewDelegate {
@@ -118,9 +117,8 @@ extension TournamentStandingsViewController: UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let tournamentStanding = tournamentStandingsResponse[indexPath.section]
-        let teamDetailsViewController = TeamDetailsViewController()
-        navigationController?.pushViewController(teamDetailsViewController, animated: true)
+        let teamTapped = tournamentStandingsResponse[indexPath.section].sortedStandingsRows[indexPath.row]
+        getTeamDetails(teamTapped.team.id)
     }
 }
 
@@ -136,7 +134,14 @@ extension TournamentStandingsViewController {
         return self
     }
     
-    @objc func teamTapped(_ playerId: Int) {
-        navigationController?.pushViewController(TeamDetailsViewController(), animated: true)
+    func getTeamDetails(_ teamId: Int) {
+        let apiUrlAddition = "team/\(teamId)"
+        let teamDetailsViewController = TeamDetailsViewController()
+
+        Task {
+            let teamDetails = try await ApiClient.getApiData(urlAddition: apiUrlAddition, requestMethod: "GET", responseType: TeamDetailsResponse.self)
+            teamDetailsViewController.setTeamDetailsApiData(teamDetails)
+            navigationController?.pushViewController(teamDetailsViewController, animated: true)
+        }
     }
 }

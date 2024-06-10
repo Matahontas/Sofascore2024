@@ -8,7 +8,6 @@
 import Foundation
 
 protocol TournamentTabItemDelegateProtocol: AnyObject {
-    
     func matchesTabViewTapped(didSelectTabAtIndex index: Int)
     func standingsTabViewTapped(didSelectTabAtIndex index: Int)
 }

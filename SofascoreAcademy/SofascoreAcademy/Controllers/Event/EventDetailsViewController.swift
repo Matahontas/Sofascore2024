@@ -182,6 +182,17 @@ extension EventDetailsViewController {
 
 extension EventDetailsViewController: TeamDetailsDelegateProtocol {
     func teamTapped(teamTappedIndex index: Int) {
-        navigationController?.pushViewController(teamDetailsViewController, animated: true)
+        getTeamDetails(index)
+    }
+    
+    func getTeamDetails(_ teamId: Int) {
+        let apiUrlAddition = "team/\(teamId)"
+        let teamDetailsViewController = TeamDetailsViewController()
+
+        Task {
+            let teamDetails = try await ApiClient.getApiData(urlAddition: apiUrlAddition, requestMethod: "GET", responseType: TeamDetailsResponse.self)
+            teamDetailsViewController.setTeamDetailsApiData(teamDetails)
+            navigationController?.pushViewController(teamDetailsViewController, animated: true)
+        }
     }
 }

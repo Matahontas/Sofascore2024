@@ -83,6 +83,12 @@
 		409F9A722C1744A7002C8D1E /* FootballStandingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409F9A712C1744A7002C8D1E /* FootballStandingsCell.swift */; };
 		409F9A742C1744B8002C8D1E /* BasketballStandingsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409F9A732C1744B8002C8D1E /* BasketballStandingsCellView.swift */; };
 		409F9A762C1744C2002C8D1E /* BasketballStandingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409F9A752C1744C2002C8D1E /* BasketballStandingsCell.swift */; };
+		409F9A792C1791D4002C8D1E /* TeamDetailsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409F9A782C1791D4002C8D1E /* TeamDetailsTabView.swift */; };
+		409F9A7B2C179518002C8D1E /* TeamTabItemDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409F9A7A2C179518002C8D1E /* TeamTabItemDelegateProtocol.swift */; };
+		409F9A7E2C179698002C8D1E /* TeamInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409F9A7D2C179698002C8D1E /* TeamInfoViewController.swift */; };
+		409F9A802C1796AC002C8D1E /* TeamMatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409F9A7F2C1796AC002C8D1E /* TeamMatchesViewController.swift */; };
+		409F9A822C1796BB002C8D1E /* TeamStandingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409F9A812C1796BB002C8D1E /* TeamStandingsViewController.swift */; };
+		409F9A842C1796C8002C8D1E /* TeamSquadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409F9A832C1796C8002C8D1E /* TeamSquadViewController.swift */; };
 		40A772192BE7D8D000801DF3 /* CalendarCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A772182BE7D8D000801DF3 /* CalendarCollectionCell.swift */; };
 		40A7721B2BE83AA600801DF3 /* ApiEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A7721A2BE83AA600801DF3 /* ApiEventModel.swift */; };
 		40CD8DB02BBD5A4E001B7B1B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CD8DAF2BBD5A4E001B7B1B /* SettingsViewController.swift */; };
@@ -173,6 +179,12 @@
 		409F9A712C1744A7002C8D1E /* FootballStandingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootballStandingsCell.swift; sourceTree = "<group>"; };
 		409F9A732C1744B8002C8D1E /* BasketballStandingsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketballStandingsCellView.swift; sourceTree = "<group>"; };
 		409F9A752C1744C2002C8D1E /* BasketballStandingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketballStandingsCell.swift; sourceTree = "<group>"; };
+		409F9A782C1791D4002C8D1E /* TeamDetailsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailsTabView.swift; sourceTree = "<group>"; };
+		409F9A7A2C179518002C8D1E /* TeamTabItemDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTabItemDelegateProtocol.swift; sourceTree = "<group>"; };
+		409F9A7D2C179698002C8D1E /* TeamInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoViewController.swift; sourceTree = "<group>"; };
+		409F9A7F2C1796AC002C8D1E /* TeamMatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMatchesViewController.swift; sourceTree = "<group>"; };
+		409F9A812C1796BB002C8D1E /* TeamStandingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamStandingsViewController.swift; sourceTree = "<group>"; };
+		409F9A832C1796C8002C8D1E /* TeamSquadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSquadViewController.swift; sourceTree = "<group>"; };
 		40A772182BE7D8D000801DF3 /* CalendarCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionCell.swift; sourceTree = "<group>"; };
 		40A7721A2BE83AA600801DF3 /* ApiEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiEventModel.swift; sourceTree = "<group>"; };
 		40CD8DAF2BBD5A4E001B7B1B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -306,6 +318,7 @@
 				4050B1992BEB89AC00682C55 /* CalendarItemDelegateProtocol.swift */,
 				409F9A442C165139002C8D1E /* TeamDetailsDelegateProtocol.swift */,
 				409F9A4F2C167C42002C8D1E /* TournamentTabItemDelegateProtocol.swift */,
+				409F9A7A2C179518002C8D1E /* TeamTabItemDelegateProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -440,6 +453,26 @@
 			path = "Am Football";
 			sourceTree = "<group>";
 		};
+		409F9A772C179010002C8D1E /* Team Details Views */ = {
+			isa = PBXGroup;
+			children = (
+				409F9A782C1791D4002C8D1E /* TeamDetailsTabView.swift */,
+			);
+			path = "Team Details Views";
+			sourceTree = "<group>";
+		};
+		409F9A7C2C179682002C8D1E /* Team */ = {
+			isa = PBXGroup;
+			children = (
+				409F9A402C164EC2002C8D1E /* TeamDetailsViewController.swift */,
+				409F9A7D2C179698002C8D1E /* TeamInfoViewController.swift */,
+				409F9A7F2C1796AC002C8D1E /* TeamMatchesViewController.swift */,
+				409F9A812C1796BB002C8D1E /* TeamStandingsViewController.swift */,
+				409F9A832C1796C8002C8D1E /* TeamSquadViewController.swift */,
+			);
+			path = Team;
+			sourceTree = "<group>";
+		};
 		40E803D72BA324520097C8C1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -453,6 +486,7 @@
 		40E803D82BA324610097C8C1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				409F9A772C179010002C8D1E /* Team Details Views */,
 				409F9A482C166765002C8D1E /* Tournament Details Views */,
 				409F9A1D2C14A3C3002C8D1E /* Incidents */,
 				409F9A152C136703002C8D1E /* Event Details Views */,
@@ -469,12 +503,12 @@
 		40E803D92BA3246A0097C8C1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				409F9A7C2C179682002C8D1E /* Team */,
 				4024C38B2BBC66C100B86351 /* MainViewController.swift */,
 				409F9A512C168010002C8D1E /* Tournament */,
 				409F9A1A2C149CF0002C8D1E /* Event */,
 				40009D1B2BE7BD870024E85B /* CalendarViewController.swift */,
 				40CD8DAF2BBD5A4E001B7B1B /* SettingsViewController.swift */,
-				409F9A402C164EC2002C8D1E /* TeamDetailsViewController.swift */,
 				409F9A422C164ED4002C8D1E /* PlayerDetailsViewController.swift */,
 				409F9A462C1658ED002C8D1E /* LeaguesViewController.swift */,
 			);
@@ -604,10 +638,12 @@
 				409F9A6E2C174495002C8D1E /* AmFootballStandingsCell.swift in Sources */,
 				403D4B032BCBEA90005936BA /* UserDefaultsHelper.swift in Sources */,
 				40009D132BE64C890024E85B /* CalendarItemView.swift in Sources */,
+				409F9A842C1796C8002C8D1E /* TeamSquadViewController.swift in Sources */,
 				4024C3962BBC6C4200B86351 /* SafeAreaCoverView.swift in Sources */,
 				4024C3922BBC672100B86351 /* TabItemView.swift in Sources */,
 				409F9A322C159EBA002C8D1E /* AwayGoalIncidentView.swift in Sources */,
 				401626522BACD6CF00F08AF4 /* TournamentTableHeader.swift in Sources */,
+				409F9A7E2C179698002C8D1E /* TeamInfoViewController.swift in Sources */,
 				409F9A172C13675A002C8D1E /* EventDetailsTeamView.swift in Sources */,
 				409F9A272C14BB95002C8D1E /* AwayCardIncidentView.swift in Sources */,
 				409F9A5B2C1736DD002C8D1E /* FootballStandingsHeaderView.swift in Sources */,
@@ -619,6 +655,7 @@
 				403D4B082BCE5DDF005936BA /* ApiClient.swift in Sources */,
 				409F9A592C16FC43002C8D1E /* RoundHeaderView.swift in Sources */,
 				409F9A3B2C15DB18002C8D1E /* BasketballAwayGoalIncidentView.swift in Sources */,
+				409F9A822C1796BB002C8D1E /* TeamStandingsViewController.swift in Sources */,
 				40E50C472BBDE2C800811859 /* TabBarItemModel.swift in Sources */,
 				409F9A372C15DAFA002C8D1E /* BasketballHomeGoalIncidentView.swift in Sources */,
 				405F38B42BBED85100FE9F95 /* TabView.swift in Sources */,
@@ -634,11 +671,13 @@
 				4024C38C2BBC66C200B86351 /* MainViewController.swift in Sources */,
 				40CD8DB02BBD5A4E001B7B1B /* SettingsViewController.swift in Sources */,
 				409F9A3F2C161AD8002C8D1E /* EmptyIncidentsView.swift in Sources */,
+				409F9A7B2C179518002C8D1E /* TeamTabItemDelegateProtocol.swift in Sources */,
 				40E803DB2BA34B870097C8C1 /* Fonts.swift in Sources */,
 				409F9A6A2C173D2D002C8D1E /* FootballStandingsHeader.swift in Sources */,
 				409F9A1F2C14A618002C8D1E /* PeriodIncidentView.swift in Sources */,
 				409F9A702C1744A0002C8D1E /* FootballStandingsCellView.swift in Sources */,
 				409F9A392C15DB0B002C8D1E /* BasketballHomeGoalIncidentViewCell.swift in Sources */,
+				409F9A792C1791D4002C8D1E /* TeamDetailsTabView.swift in Sources */,
 				40E50C412BBD770300811859 /* TabBarSports.swift in Sources */,
 				409F9A342C159EC7002C8D1E /* AwayGoalIncidentViewCell.swift in Sources */,
 				409F9A682C173D21002C8D1E /* BasketballStandingsHeader.swift in Sources */,
@@ -648,6 +687,7 @@
 				409F9A4E2C167770002C8D1E /* TournamentDetailsTabView.swift in Sources */,
 				409F9A662C173D16002C8D1E /* AmFootballStandingsHeader.swift in Sources */,
 				409F9A572C1680F7002C8D1E /* TableRoundHeader.swift in Sources */,
+				409F9A802C1796AC002C8D1E /* TeamMatchesViewController.swift in Sources */,
 				409F9A4A2C16677D002C8D1E /* TournamentDetailsHeaderView.swift in Sources */,
 				403B1B242B9F0E4000AD49C2 /* AppDelegate.swift in Sources */,
 				409F9A532C16803F002C8D1E /* TournamentMatchesViewController.swift in Sources */,

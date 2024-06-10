@@ -129,4 +129,3 @@ extension TournamentDetailsViewController: TournamentTabItemDelegateProtocol {
         getTournamentStandings(tournamentStandingsViewController)
     }
 }
-

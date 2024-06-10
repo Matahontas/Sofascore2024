@@ -15,6 +15,9 @@ enum UserDefaultsHelper {
     private static let selectedSportApiSlugKey = "selectedSportApiSlug"
     private static let tournamentDetailsTabIndexKey = "tournamentDetailsTabIndex"
     private static let tournamentTappedIdKey = "tournamentTappedId"
+    private static let teamDetailsTabIndexKey = "teamDetailsTabIndex"
+    private static let teamTappedIdKey = "teamTappedId"
+
 
     static var tabBarIndex: Int {
         get { return UserDefaults.standard.integer(forKey: tabBarIndexKey) }
@@ -43,5 +46,13 @@ enum UserDefaultsHelper {
     static var tournamentTappedId: Int {
         get { return UserDefaults.standard.integer(forKey: tournamentTappedIdKey) }
         set { UserDefaults.standard.set(newValue, forKey: tournamentTappedIdKey) }
+    }
+    static var teamDetailsTabIndex: Int {
+        get { return UserDefaults.standard.integer(forKey: teamDetailsTabIndexKey) }
+        set { UserDefaults.standard.set(newValue, forKey: teamDetailsTabIndexKey) }
+    }
+    static var teamTappedId: Int {
+        get { return UserDefaults.standard.integer(forKey: teamTappedIdKey) }
+        set { UserDefaults.standard.set(newValue, forKey: teamTappedIdKey) }
     }
 }

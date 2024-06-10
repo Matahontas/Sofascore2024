@@ -11,7 +11,6 @@ import SofaAcademic
 import UIKit
 
 class MainViewController: UIViewController, BaseViewProtocol {
-    
     private let safeAreaCoverView: SafeAreaCoverView = .init()
     private let mainHeaderView: MainHeaderView = .init()
     private let containerView: BaseView = .init()

@@ -108,3 +108,11 @@ struct SortedStandingsRows: Codable {
     let losses: Int
     let percentage: Double?
 }
+
+struct TeamDetailsResponse: Codable {
+    let id: Int
+    let name: String
+    let country: Country
+    let managerName: String?
+    let venue: String?
+}
