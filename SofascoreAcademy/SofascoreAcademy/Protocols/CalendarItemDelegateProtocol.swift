@@ -8,6 +8,5 @@
 import Foundation
 
 protocol CalendarItemDelegateProtocol: AnyObject {
-    
     func calendarItemTapped()
 }

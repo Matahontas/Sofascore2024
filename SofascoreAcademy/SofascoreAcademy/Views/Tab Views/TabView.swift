@@ -66,7 +66,6 @@ class TabView: BaseView {
 extension TabView {
     
     @objc private func handleTap(_ sender: UITapGestureRecognizer) {
-        
         delegate?.tabViewTapped(didSelectTabAtIndex: sender.view?.tag ?? 0)
     }
     
@@ -78,10 +77,14 @@ extension TabView {
     
     @discardableResult
     func animateTabViewIndicator() -> Self {
-        UIView.animate(animations: {
-            self.layoutIfNeeded()
-        }) {_ in
-            self.tabViewIndicator.layer.add(AnimationsHelper.applyFadeTransition(), forKey: "tabViewIndicatorTransition")
+//        UIView.animate(animations: {
+//            self.layoutIfNeeded()
+//        }) {_ in
+//            self.tabViewIndicator.layer.add(AnimationsHelper.applyFadeTransition(), forKey: "tabViewIndicatorTransition")
+//        }
+        UIView.animate { [weak self] in
+            self?.layoutIfNeeded()
+            self?.tabViewIndicator.layer.add(AnimationsHelper.applyFadeTransition(), forKey: "tabViewIndicatorTransition")
         }
         return self
     }

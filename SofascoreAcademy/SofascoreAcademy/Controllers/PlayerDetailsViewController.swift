@@ -1,15 +1,15 @@
 //
-//  EventDetailsViewController.swift
+//  PlayerDetailsViewController.swift
 //  SofascoreAcademy
 //
-//  Created by Matija Pavicic on 02.04.2024..
+//  Created by Matija Pavicic on 09.06.2024..
 //
 
 import Foundation
 import SofaAcademic
 import UIKit
 
-class EventDetailsViewController: UIViewController, BaseViewProtocol {
+class PlayerDetailsViewController: UIViewController, BaseViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +28,6 @@ class EventDetailsViewController: UIViewController, BaseViewProtocol {
     }
     
     func styleViews() {
-        title = .event_details_title
+        title = "Player Details"
     }
 }

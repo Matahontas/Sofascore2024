@@ -11,13 +11,14 @@ import SofaAcademic
 import UIKit
 
 class MainViewController: UIViewController, BaseViewProtocol {
-    
     private let safeAreaCoverView: SafeAreaCoverView = .init()
     private let mainHeaderView: MainHeaderView = .init()
     private let containerView: BaseView = .init()
     private let tabView: TabView = .init()
     private let calendarViewController: CalendarViewController = .init()
     private let calendarContainerView: BaseView = .init()
+    private let settingsViewController: SettingsViewController = .init()
+    private let leaguesViewController: LeaguesViewController = .init()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,10 +82,27 @@ class MainViewController: UIViewController, BaseViewProtocol {
         mainHeaderView.settingsButtonTapHandler = { [weak self] in
             self?.showSettings()
         }
+        mainHeaderView.trophyButtonTaphandler = { [weak self] in
+            self?.showLeagues()
+        }
     }
 }
 
 extension MainViewController {
+    
+    func addEmptyEventView(_ child: UIView) {
+        containerView.addSubview(child)
+        child.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+    }
+    
+    func removeEmptyEventView(_ child: UIView) {
+        guard child.superview != nil else {
+            return
+        }
+        child.removeFromSuperview()
+    }
     
     func addEvent(_ child: UIViewController) {
 
@@ -118,18 +136,20 @@ extension MainViewController {
     }
     
     @objc func showSettings() {
-        let settingsViewController = SettingsViewController()
-        
         navigationController?.pushViewController(settingsViewController, animated: true)
+    }
+    @objc func showLeagues() {
+        navigationController?.pushViewController(leaguesViewController, animated: true)
     }
     
     func getEventsData(_ eventsViewController: EventsViewController) {
         
         let apiUrlAddition = "sport/" + "\(UserDefaultsHelper.selectedSportApiSlug)/" + "events/" + UserDefaultsHelper.selectedDateApiSlug
+        
         Task {
             let event = try await ApiClient.getApiData(urlAddition: apiUrlAddition, requestMethod: "GET", responseType: [EventResponse].self)
-            
             eventsViewController.setEventsApiData(event)
+            addEvent(eventsViewController)
         }
     }
 }
@@ -142,12 +162,11 @@ extension MainViewController: TabItemDelegateProtocol, CalendarItemDelegateProto
         tabView.animateTabViewIndicator()
         UserDefaultsHelper.tabBarIndex = index
         UserDefaultsHelper.selectedSportApiSlug = TabItemHelper.getSportSlugFromTabIndex(index)
-    
+        
         remove(self.children.first as? EventsViewController ?? UIViewController())
 
         let eventsViewController = EventsViewController()
         getEventsData(eventsViewController)
-        addEvent(eventsViewController)
     }
     
     func calendarItemTapped() {
@@ -158,7 +177,6 @@ extension MainViewController: TabItemDelegateProtocol, CalendarItemDelegateProto
         remove(self.children.first as? EventsViewController ?? UIViewController())
 
         let eventsViewController = EventsViewController()
-        getEventsData(eventsViewController)
-        addEvent(eventsViewController)
+        getEventsData(eventsViewController)        
     }
 }

@@ -16,6 +16,7 @@ class MainHeaderView: BaseView {
     private let trophyIconButton: UIButton = .init()
     private let settingsIconButton: UIButton = .init()
     var settingsButtonTapHandler: (() -> Void)? = nil
+    var trophyButtonTaphandler: (() -> Void)? = nil
     
     override func addViews() {
         addSubview(sofascoreLockupImageView)
@@ -56,6 +57,7 @@ class MainHeaderView: BaseView {
     
     override func setupBinding() {
         settingsIconButton.addTarget(self, action: #selector(settingsButtonAction), for: .touchUpInside)
+        trophyIconButton.addTarget(self, action: #selector(trophyButtonAction), for: .touchUpInside)
     }
 }
 
@@ -64,5 +66,9 @@ extension MainHeaderView {
     @objc
     func settingsButtonAction() {
         settingsButtonTapHandler?()
+    }
+    @objc
+    func trophyButtonAction() {
+        trophyButtonTaphandler?()
     }
 }

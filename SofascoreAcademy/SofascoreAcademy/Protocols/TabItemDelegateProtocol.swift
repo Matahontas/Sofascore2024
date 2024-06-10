@@ -8,6 +8,5 @@
 import Foundation
 
 protocol TabItemDelegateProtocol: AnyObject {
-    
     func tabViewTapped(didSelectTabAtIndex index: Int)
 }

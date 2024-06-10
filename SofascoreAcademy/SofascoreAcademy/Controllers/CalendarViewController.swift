@@ -40,7 +40,7 @@ class CalendarViewController: UIViewController, BaseViewProtocol {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        collectionView.selectItem(at: IndexPath(item: currentDateIndex, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+        collectionView.selectItem(at: IndexPath(item: UserDefaultsHelper.selectedDateIndex, section: 0), animated: true, scrollPosition: .centeredHorizontally)
     }
     
     func addViews() {
@@ -69,6 +69,10 @@ class CalendarViewController: UIViewController, BaseViewProtocol {
         collectionView.dataSource = self
         
         currentDateViewIndicator.backgroundColor = .sofaWhite
+        UserDefaultsHelper.selectedDateIndex = currentDateIndex
+        
+        dateFormatter.dateFormat = "YYYY-MM-dd"
+        UserDefaultsHelper.selectedDateApiSlug = dateFormatter.string(from: Date())
     }
 }
 
@@ -133,12 +137,18 @@ extension CalendarViewController {
     
     @discardableResult
     func animateCurrentDateViewIndicator() -> Self {
-        
-        UIView.animate(animations: {
-            self.view.layoutIfNeeded()
-        }) {_ in
-            self.currentDateViewIndicator.layer.add(AnimationsHelper.applyFadeTransition(), forKey: "currentDateViewIndicatorTransition")
+//        
+//        UIView.animate(animations: { [weak self] in
+//            self?.view.layoutIfNeeded()
+//        }) {_ in
+//            self.currentDateViewIndicator.layer.add(AnimationsHelper.applyFadeTransition(), forKey: "currentDateViewIndicatorTransition")
+//        }
+        UIView.animate { [weak self] in
+            self?.view.layoutIfNeeded()
+            self?.currentDateViewIndicator.layer.add(AnimationsHelper.applyFadeTransition(), forKey: "currentDateViewIndicatorTransition")
         }
         return self
+        
+
     }
 }
