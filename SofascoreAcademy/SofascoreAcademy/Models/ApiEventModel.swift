@@ -29,6 +29,8 @@ struct Tournament: Codable {
     let slug: String
     let sport: Sport
     let country: Country
+    let numberOfCompetitors: Int?
+    let headToHeadCount: Int?
 }
 
 struct Team: Codable {
@@ -59,4 +61,50 @@ struct Country: Codable {
     
     let id: Int
     let name: String
+}
+
+//INCIDENTS
+struct EventIncidentsResponse: Codable {
+    
+    let player: Player?
+    let teamSide: String?
+    let scoringTeam: String?
+    let homeScore: Int?
+    let awayScore: Int?
+    let goalType: String?
+    let color: String?
+    let id: Int
+    let time: Int
+    let type: String
+    let text: String?
+}
+
+struct Player: Codable {
+    
+    let id: Int
+    let name: String
+    let slug: String
+    let country: Country
+    let position: String
+}
+
+//TOURNAMENT STANDINGS
+struct TournamentStandingsResponse: Codable {
+    let id: Int
+    let tournament: Tournament
+    let type: String
+    let sortedStandingsRows: [SortedStandingsRows]
+}
+
+struct SortedStandingsRows: Codable {
+    let id: Int
+    let team: Team
+    let points: Int?
+    let scoresFor: Int
+    let scoresAgainst: Int
+    let played: Int
+    let wins: Int
+    let draws: Int
+    let losses: Int
+    let percentage: Double?
 }

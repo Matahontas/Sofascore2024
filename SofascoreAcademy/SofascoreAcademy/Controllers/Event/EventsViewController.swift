@@ -15,6 +15,7 @@ class EventsViewController: UIViewController, BaseViewProtocol {
     private let tableView: UITableView = .init()
     private var eventsByTournament: [Int:[EventResponse]] = [:]
     private var sortedTournamentIds: [Int] = []
+    private let tournamentDetailsViewController = TournamentDetailsViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,12 +48,10 @@ class EventsViewController: UIViewController, BaseViewProtocol {
 extension EventsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        
         sortedTournamentIds.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         let tournamentId = sortedTournamentIds[section]
         return eventsByTournament[tournamentId]?.count ?? 0
     }
@@ -73,12 +72,13 @@ extension EventsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let tournamentId = sortedTournamentIds[indexPath.section]
+        guard let event = eventsByTournament[tournamentId]?[indexPath.row] else { return }
         
-        self.eventViewTapped()
+        self.eventViewTapped(event.id)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TournamentTableHeader") as? TournamentTableHeader
         else {
             return UIView()
@@ -86,6 +86,10 @@ extension EventsViewController: UITableViewDataSource, UITableViewDelegate {
         let tournamentId = sortedTournamentIds[section]
         if let tournament = eventsByTournament[tournamentId]?.first?.tournament {
             header.set(tournamentApiModel: tournament)
+            
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(headerTapped(_:)))
+            header.addGestureRecognizer(tapGesture)
+            header.tag = section
             return header
         } else {
             return UIView()
@@ -95,10 +99,35 @@ extension EventsViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension EventsViewController {
     
-    @objc func eventViewTapped() {
-        
+    @objc func eventViewTapped(_ eventId: Int) {
         let eventDetailsViewController = EventDetailsViewController()
+            
+        let apiUrlAddition = "event/" + "\(eventId)"
+        let apiUrlAdditionIncident = "event/" + "\(eventId)/incidents"
+
+        Task {
+            let event = try await ApiClient.getApiData(urlAddition: apiUrlAddition, requestMethod: "GET", responseType: EventResponse.self)
+            
+            let eventIncidents = try await ApiClient.getApiData(urlAddition: apiUrlAdditionIncident, requestMethod: "GET", responseType: [EventIncidentsResponse].self)
+            
+            eventDetailsViewController.setEventDetailsApiData(event: event, eventIncidents: eventIncidents)
+        }
         navigationController?.pushViewController(eventDetailsViewController, animated: true)
+    }
+    
+    @objc func headerTapped(_ sender: UITapGestureRecognizer) {
+        guard let section = sender.view?.tag else { return }
+        handleHeaderTap(section: section)
+    }
+    
+    func handleHeaderTap(section: Int) {
+        let tournamentId = sortedTournamentIds[section]
+        let apiUrlAddition = "tournament/\(tournamentId)"
+        Task {
+            let tournamentDetails = try await ApiClient.getApiData(urlAddition: apiUrlAddition, requestMethod: "GET", responseType: Tournament.self)
+            tournamentDetailsViewController.setTournamentDetailsApiData(tournamentDetails)
+        }
+        navigationController?.pushViewController(tournamentDetailsViewController, animated: true)
     }
     
     @discardableResult

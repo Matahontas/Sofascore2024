@@ -7,24 +7,29 @@
 
 import Foundation
 import SnapKit
+import SofaAcademic
 import UIKit
 
-class TournamentTableHeader: UITableViewHeaderFooterView {
+class TournamentTableHeader: UITableViewHeaderFooterView, BaseViewProtocol {
     
     private let tournamentHeaderView: TournamentHeaderView = .init()
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
-        createViews()
+        addViews()
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func createViews() {
+    func addViews() {
         addSubview(tournamentHeaderView)
+    }
+    
+    func setupConstraints() {
         tournamentHeaderView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
@@ -32,7 +37,6 @@ class TournamentTableHeader: UITableViewHeaderFooterView {
 }
 
 extension TournamentTableHeader {
-    
     func set(tournamentApiModel: Tournament) {
         tournamentHeaderView.countryName(tournamentApiModel.country.name)
             .leagueName(tournamentApiModel.name)
